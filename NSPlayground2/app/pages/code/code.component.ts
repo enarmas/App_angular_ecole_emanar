@@ -126,7 +126,7 @@ export class CodeComponent implements OnInit {
     }
 
     private isValidForm() {
-        let isValid = !!this.emailError || !!this.passError;
+        let isValid = !!this.emailError;
         return !isValid;
     }
 
@@ -136,61 +136,50 @@ export class CodeComponent implements OnInit {
 
         if (this.isValidForm()) {
             this.isAuthenticating = true; 
-                console.log("samrane1code");
+            console.log("samrane1code");
 
-               /* dialogs.action({
-                    message: "Choisissez une langue",
-                    cancelButtonText: "Cancel text",
-                    actions: ["fالعربية", "Francais"]
-                }).then(function (result) {
-                    console.log("Dialog result: " + result);
-                    if(result == "fالعربية"){
-                        //Do action1
-                    }else if(result == "Francais"){
-                        //Do action2
-                    }
-                });*/
-
-
-                /*this.codeService.getFileJson(this.codeSchool)
-                .subscribe(
-                    data=>{
-                       
-                        /*let school = data;
-                        school = JSON.parse(school);
-                        console.log("samrane2scode1 : "+JSON.stringify(school));
-                        console.log("samrane2scode2 : "+school);
-                        this.routerExtensions.navigate(["/login"]);
-
-                        console.log( JSON.stringify(data));
-                        console.log("samrane2scode2 : "+data.verifierEcole );
-
-                        if(data.verifierEcole == true){
-                            setString('connectionString',JSON.stringify(data.ecole));
-                           //console.log( getString('connectionString'));
-                           let connectionString = JSON.parse(getString("connectionString"));
-               
-                           Config.ip = connectionString[0].ip;
-                           Config.api = connectionString[0].api;
-                           Config.nameSchool = connectionString[0].nameSchool ;
-                           Config.photosUrl = connectionString[0].photosUrl ;
-                           Config.nameDB = connectionString[0].nameDB;
-                           Config.userDB = connectionString[0].userDB;
-                           Config.passDB = connectionString[0].passDB;
-
-                            this.routerExtensions.navigate(["/login"]);
-                        }else if(data.verifierEcole == false){
-                            this.loginError = "le code est incorrect ";
-                        }
-                    },
-                    error=>{
-                        console.log("samrane2codeError "+ JSON.stringify(error.error));
-                        this.isAuthenticating = false;
-                        this.loginError = error.message;
-                    } 
-                ); */
         
-                console.log("samrane3code"); 
+            this.codeService.getFileJson(this.codeSchool)
+            .subscribe(
+                data=>{
+                    
+                    /*let school = data;
+                    school = JSON.parse(school);
+                    console.log("samrane2scode1 : "+JSON.stringify(school));
+                    console.log("samrane2scode2 : "+school);
+                    this.routerExtensions.navigate(["/login"]);*/
+
+                    console.log( JSON.stringify(data));
+                    console.log("samrane2scode2 : "+data.verifierEcole );
+
+                    if(data.verifierEcole == true){
+                        setString('connectionString',JSON.stringify(data.ecole));
+                        //console.log( getString('connectionString'));
+                        let connectionString = JSON.parse(getString("connectionString"));
+            
+                        Config.ip = connectionString[0].ip;
+                        Config.api = connectionString[0].api;
+                        Config.nameSchool = connectionString[0].nameSchool ;
+                        Config.photosUrl = connectionString[0].photosUrl ;
+                        Config.nameDB = connectionString[0].nameDB;
+                        Config.userDB = connectionString[0].userDB;
+                        Config.passDB = connectionString[0].passDB;
+
+                        this.isAuthenticating = false; 
+                        this.routerExtensions.navigate(["/login"]);
+                    }else if(data.verifierEcole == false){
+                        this.isAuthenticating = false;
+                        this.loginError = "le code est incorrect ";
+                    }
+                },
+                error=>{
+                    console.log("samrane2codeError "+ JSON.stringify(error.error));
+                    this.isAuthenticating = false;
+                    this.loginError = error.message;
+                } 
+            ); 
+    
+            console.log("samrane3code"); 
         
         }
     } 

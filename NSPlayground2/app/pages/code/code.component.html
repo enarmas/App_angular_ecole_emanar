@@ -3,25 +3,24 @@
         <GridLayout rows="33*, 67*">
             <GridLayout row="0" class="logo-container">
                 <GridLayout class="image-container">
-                    <Image src="~/images/logo@3x.png"></Image>
+                    <Image src="~/images/logo.png"></Image>
                 </GridLayout>
             </GridLayout>
             <GridLayout row="1" rows="*, auto" [ngClass]="{'login-page-tablet': isTablet()}">
                 <GridLayout row="0" rows="auto" rows="*">
                     <ActivityIndicator color="white" [busy]="isAuthenticating"
-                        horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+                        horizontalAlignment="center" verticalAlignment="center">
+                    </ActivityIndicator>
                 </GridLayout>
                 <GridLayout row="0" rows="*">
                     <GridLayout row="0" rows="100,auto, auto" class="container-padding"
                         verticalAlignment="top">
                         <GridLayout row="1" rows="auto, auto, auto">
-                            <Label class="eloha-font-semibold login-field-label m-b-2"
-                                [ngClass]="{'font-size-md': !isTablet(), 'font-size-md-tablet': isTablet()}"
+                            <Label class="eloha-font-semibold login-field-label m-b-2" fontSize="20"                                 [ngClass]="{'font-size-md': !isTablet(), 'font-size-md-tablet': isTablet()}"
                                 row="0" text="Code"></Label>
                             <TextField #email row="1" class="eloha-font-semibold login-input-field"
                                 ios:style="padding:10" android:style="padding-left:10; padding-right: 10"
-                                hint="E.g. user@examples.com" keyboardType="email"
-                                [(ngModel)]="codeSchool" autocorrect="false"
+                                hint="Exemple : x45kjop43g67" [(ngModel)]="codeSchool" autocorrect="false"
                                 autocapitalizationType="none" (focus)="onEmailFocus()"
                                 [ngClass]="{'font-size-md': !isTablet(), 'font-size-md-tablet': isTablet(), 'input-field-error': hasEmailErrors()}"></TextField>
                             <Label *ngIf="hasEmailErrors()" class="eloha-font-semibold m-t-2 login-field-label color-danger"

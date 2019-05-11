@@ -215,6 +215,8 @@ export class LoginComponent implements OnInit {
                             this.isAuthenticating = false; 
                             this.loginError = "incorect2";
 
+                        }else{
+                            this.isAuthenticating = false; 
                         } 
         
                     },
