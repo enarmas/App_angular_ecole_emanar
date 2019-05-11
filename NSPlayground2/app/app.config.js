@@ -1,0 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// Configure Your Kinvey App Here
+exports.appConfig = {
+    appKey: 'your_app_key',
+    appSecret: 'your_app_secret'
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNvbmZpZy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFwcC5jb25maWcudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpQ0FBaUM7QUFDcEIsUUFBQSxTQUFTLEdBQUc7SUFDckIsTUFBTSxFQUFFLGNBQWM7SUFDdEIsU0FBUyxFQUFFLGlCQUFpQjtDQUMvQixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiLy8gQ29uZmlndXJlIFlvdXIgS2ludmV5IEFwcCBIZXJlXG5leHBvcnQgY29uc3QgYXBwQ29uZmlnID0ge1xuICAgIGFwcEtleTogJ3lvdXJfYXBwX2tleScsXG4gICAgYXBwU2VjcmV0OiAneW91cl9hcHBfc2VjcmV0J1xufSJdfQ==

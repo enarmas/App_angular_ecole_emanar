@@ -1,0 +1,73 @@
+<ScrollView width="100%" height="100%">
+    <StackLayout width="100%" height="100%">
+        <GridLayout rows="33*, 67*">
+            <GridLayout row="0" class="logo-container">
+                <GridLayout class="image-container">
+                    <Image src="~/images/logo@3x.png"></Image>
+                </GridLayout>
+            </GridLayout>
+            <GridLayout row="1" rows="*, auto" [ngClass]="{'login-page-tablet': isTablet()}">
+                <GridLayout row="0" rows="auto" rows="*">
+                    <ActivityIndicator color="white" [busy]="isAuthenticating"
+                        horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+                </GridLayout>
+                <GridLayout row="0" rows="*">
+                    <GridLayout row="0" rows="100,auto, auto" class="container-padding"
+                        verticalAlignment="top">
+                        <GridLayout row="1" rows="auto, auto, auto">
+                            <Label class="eloha-font-semibold login-field-label m-b-2"
+                                [ngClass]="{'font-size-md': !isTablet(), 'font-size-md-tablet': isTablet()}"
+                                row="0" text="Code"></Label>
+                            <TextField #email row="1" class="eloha-font-semibold login-input-field"
+                                ios:style="padding:10" android:style="padding-left:10; padding-right: 10"
+                                hint="E.g. user@examples.com" keyboardType="email"
+                                [(ngModel)]="codeSchool" autocorrect="false"
+                                autocapitalizationType="none" (focus)="onEmailFocus()"
+                                [ngClass]="{'font-size-md': !isTablet(), 'font-size-md-tablet': isTablet(), 'input-field-error': hasEmailErrors()}"></TextField>
+                            <Label *ngIf="hasEmailErrors()" class="eloha-font-semibold m-t-2 login-field-label color-danger"
+                                row="2" [text]="getEmailError()" [ngClass]="{'font-size-md': !isTablet(), 'font-size-md-tablet': isTablet()}"></Label>
+                        </GridLayout>
+                        
+                        <GridLayout row="2" rows="auto, auto" class="submit-container">
+                            <Button row="0" [isEnabled]="isSubmitEnabled()"
+                                class="eloha-font-semibold login-submit"
+                                [text]="'Sign in'" (tap)="checkCodeschool()" [ngClass]="{'font-size-lg': !isTablet(), 'font-size-lg-tablet': isTablet()}"></Button>
+                            <Label *ngIf="hasLoginErrors()" class="eloha-font-semibold color-danger"
+                                row="1" [text]="getLoginError()" textWrap="true"
+                                [ngClass]="{'font-size-md': !isTablet(), 'font-size-md-tablet': isTablet()}"></Label>
+                        </GridLayout>
+                       
+                    </GridLayout>
+                </GridLayout>
+                <GridLayout row="1" rows="auto, auto" verticalAlignment="bottom"
+                    class="m-b-2">
+                    <Label row="0" text="Powered by Yuor Company Inc." class="eloha-font-regular copyright-label"
+                        [ngClass]="{'font-size-sm': !isTablet(), 'font-size-sm-tablet': isTablet()}"></Label>
+                    <Label row="1" text="© Copyright 2019" class="eloha-font-regular copyright-label"
+                        [ngClass]="{'font-size-sm': !isTablet(), 'font-size-sm-tablet': isTablet()}"></Label>
+                </GridLayout>
+            </GridLayout>
+            <GridLayout row="2" [class.dialogOpen]="dialogOpen">
+                            
+                <AbsoluteLayout class="dialog-wrapper"  horizontalAlignment="center">
+                    <StackLayout class="dialog">
+                        <GridLayout row="0" class="GridLayout_image">
+                            <GridLayout class="image-container">
+                                <Image src="~/images/logo.png"></Image>
+                            </GridLayout>
+                        </GridLayout>
+
+                        <Label class="h3" textWrap="true" text="Choisissez une langue" style="font-size: 20; "></Label>
+
+                        <GridLayout row="0" colums="*,*" class="GridLayout_image">
+                            <Button  class="btn btn-primary" text="العربية" style="font-weight: bold; " (tap)="closeDialog(1)"></Button>
+                            <Button class="btn btn-outline" text="Francais"  (tap)="closeDialog(2)"></Button>
+                        </GridLayout>
+                        
+                    </StackLayout>
+                </AbsoluteLayout>
+            </GridLayout>
+        </GridLayout>
+        
+    </StackLayout>
+</ScrollView>

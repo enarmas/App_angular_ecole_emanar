@@ -1,0 +1,16 @@
+[
+    {
+        "matiere":"Matière",
+        "professeur":"Professeur",
+        "periode":"Période",
+        "score":"Score",
+        "textbutton":"passer"
+    },
+    {
+        "matiere":"المادة",
+        "professeur":"الأستاذ",
+        "periode":"الفترة",
+        "score":"النتيجة ",
+        "textbutton":"بدء الاختبار"
+    }
+ ]

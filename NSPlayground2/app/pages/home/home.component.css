@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.iconLang{
+    /*color:darkblue;*/
+    background-color: #3DB7D8;
+    border-radius: 40%;
+    padding: 5 8;
+    margin: 0 5;
+}
+
+.gridPrincipale{
+    background-color: #fff;
+    color: #4d4d4d;
+    margin: 12 12 0;
+    height: auto;
+    border-radius:10;
+    box-shadow: 3 3 12 #999;
+    padding:12 12;
+}
+
+.title{
+    vertical-align: center;
+}
+
+.label{
+    font-size: 12;
+    color: darkblue;
+    vertical-align: center;
+    padding-left: 5
+
+
+}
+
+.daterealisation{
+    text-align: right;
+    padding-left: 0;
+    font-size: 14;
+
+}
+
+.labelScore{
+    text-align: right;
+    color: darkblue;
+}
+
+.stackLayoutScore{
+    top: 5;
+    
+}

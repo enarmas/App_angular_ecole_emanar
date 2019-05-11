@@ -1,0 +1,89 @@
+<!--
+The login functionality is backed by Kinvey. For this, you need to configure the Kinvey App.
+Open the file 'app/app.config.ts' and update your Kinvey app's appKey and appSecret.
+-->
+
+<ActionBar title="My App" class="action-bar" android:style="padding-top:20" style="background :#0C2633"
+    flat="true">
+    <ActionItem ios.position="right" (tap)="isAr_Fr(0)">
+        <StackLayout>
+            <Label #textFr text="Fr" class="iconLang" style="color: darkblue"></Label>
+        </StackLayout>
+    </ActionItem>
+    <ActionItem ios.position="right" (tap)="isAr_Fr(1)">
+        <StackLayout>
+            <Label #textAr text="Ar" class="iconLang" style="margin-right: 25" ></Label>
+        </StackLayout>
+    </ActionItem>
+    <ActionItem ios.position="right" (tap)="logout()">
+        <StackLayout>
+            <Label text="&#xf08b;" class="fa fa-logout" android:style="padding-right:10"></Label>
+        </StackLayout>
+    </ActionItem>
+</ActionBar>
+<GridLayout rows="*" backgroundColor="#ECF0F5">
+    <ScrollView >
+        <StackLayout>
+            <GridLayout  *ngFor="let test of tests; let i = index"  rows="*,3*"
+                columns="5*,3*"  class="gridPrincipale" ios:shadowRadius="3">
+                <!--row 0-->
+                <Label row="0" col="0"  color="darkblue" class="h3 title"  
+                    [text]="test?.test_titre"></Label>
+
+                <StackLayout  row="0" col="1" >
+                    <Label  class="labelScore" *ngIf="(test?.termine == '1')"  [text]="dictionayjson[isFrAr].score+': '+test?.score+'%'"></Label>
+                    
+                    <Button bottom="0" fontSize="15"  class="btn btn-primary" *ngIf="!(test?.termine == '1')" [text]="dictionayjson[isFrAr].textbutton"></Button>
+                </StackLayout>
+
+                 <!--row 1-->
+                 <GridLayout row="1" colSpan="2"    rows="*,*,*"
+                    columns="2*,1*"  class="gridSeconde" ios:shadowRadius="3" >
+                    <!--row 1-->
+                    <Label row="0" col="0"  class="label" 
+                    [text]="dictionayjson[isFrAr].professeur+': '+test?.professeur" ></Label>
+                    <!--row 2-->
+                    <Label row="1" col="0"  class="label" 
+                    [text]="dictionayjson[isFrAr].matiere+': '+test?.matiere" ></Label>
+
+                    <!--row 3-->
+                    <Label row="2" col="0"  class="label" 
+                    [text]="dictionayjson[isFrAr].periode+': '+(test?.datedebut |  date:'shortDate')+' - '+(test?.datefin |  date:'shortDate')"></Label>
+
+                </GridLayout>
+                
+            </GridLayout>
+
+            <GridLayout  *ngFor="let test of tests; let i = index"  rows="2*,2*,2*,3*"
+                columns="2*,1*"  class="gridPrincipale" ios:shadowRadius="3"
+                 >
+                <!--row 0-->
+                <Label row="0" col="0"  color="darkblue" class="h3"  
+                    [text]="test?.test_titre"></Label>
+                <Label row="0" col="1"  class="label daterealisation" 
+                    [text]="test?.daterealisation"></Label>
+
+                 <!--row 1-->
+                 <Label row="1" col="0"  class="label" 
+                    [text]="dictionayjson[isFrAr].professeur+': '+test?.professeur" ></Label>
+                 <!--row 2-->
+                <Label row="2" col="0"  class="label" 
+                    [text]="dictionayjson[isFrAr].matiere+': '+test?.matiere" ></Label>
+
+                 <!--row 3-->
+                <Label row="3" col="0"  class="label" 
+                    [text]="dictionayjson[isFrAr].periode+': '+(test?.datedebut |  date:'shortDate')+' - '+(test?.datefin |  date:'shortDate')"></Label>
+
+                 <!--row 2-->
+                <StackLayout  row="2" col="1" rowSpan="2" >
+                        <Label  class="labelScore" *ngIf="(test?.termine == '1')"  [text]="dictionayjson[isFrAr].score+': '+test?.score+'%'"></Label>
+                        
+                        <Button bottom="0" fontSize="15"  class="btn btn-primary" *ngIf="!(test?.termine == '1')" [text]="dictionayjson[isFrAr].textbutton"></Button>
+                </StackLayout>
+               
+            </GridLayout>
+
+
+        </StackLayout>
+    </ScrollView>
+</GridLayout>
