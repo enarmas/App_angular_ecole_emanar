@@ -47,7 +47,7 @@
                         [ngClass]="{'font-size-sm': !isTablet(), 'font-size-sm-tablet': isTablet()}"></Label>
                 </GridLayout>
             </GridLayout>
-            <GridLayout row="2" [class.dialogOpen]="dialogOpen">
+            <GridLayout class="GridLayout_dialog" row="2" [class.dialogOpen]="dialogOpen">
                             
                 <AbsoluteLayout class="dialog-wrapper"  horizontalAlignment="center">
                     <StackLayout class="dialog">
@@ -58,11 +58,10 @@
                         </GridLayout>
 
                         <Label class="h3" textWrap="true" text="Choisissez une langue" style="font-size: 20; "></Label>
-
-                        <GridLayout row="0" colums="*,*" class="GridLayout_image">
-                            <Button  class="btn btn-primary" text="العربية" style="font-weight: bold; " (tap)="closeDialog(1)"></Button>
-                            <Button class="btn btn-outline" text="Francais"  (tap)="closeDialog(2)"></Button>
-                        </GridLayout>
+                        <Button  class="btn btn-primary" text="العربية" style="font-weight: bold; " (tap)="closeDialog(1)"></Button>
+                        <Button  class="btn btn-outline" text="Francais"  (tap)="closeDialog(2)"></Button>
+                    
+                       
                         
                     </StackLayout>
                 </AbsoluteLayout>

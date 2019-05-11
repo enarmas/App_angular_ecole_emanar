@@ -17,6 +17,7 @@ import * as dialogs from "tns-core-modules/ui/dialogs";
 
 declare var android: any;
 
+
 @Component({
     selector: "code",
     moduleId: module.id,

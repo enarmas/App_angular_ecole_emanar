@@ -15,9 +15,11 @@
 .dialog-wrapper {
     visibility: collapse;
     opacity: 0;
+
 }
 
 .dialog {
+    border-radius: 20px ;
     border-width: 1 0 1 0;
     border-color: black;
     background-color: white;
