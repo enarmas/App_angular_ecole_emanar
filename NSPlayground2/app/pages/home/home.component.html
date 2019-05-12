@@ -5,7 +5,7 @@ Open the file 'app/app.config.ts' and update your Kinvey app's appKey and appSec
 <Page loaded="pageLoaded" class="page" xmlns="http://www.nativescript.org/tns.xsd">
 <ActionBar title="E-Manar" class="action-bar" android:style="padding-top:20" style="background :#0C2633"
     flat="true">
-   <!--  <ActionItem ios.position="right" (tap)="isAr_Fr(0)">
+    <ActionItem ios.position="right" (tap)="isAr_Fr(0)">
         <StackLayout>
             <Label #textFr text="Fr" class="iconLang" style="color: darkblue"></Label>
         </StackLayout>
@@ -14,36 +14,36 @@ Open the file 'app/app.config.ts' and update your Kinvey app's appKey and appSec
         <StackLayout>
             <Label #textAr text="Ar" class="iconLang" style="margin-right: 25" ></Label>
         </StackLayout>
-    </ActionItem>-->
+    </ActionItem>
     <ActionItem ios.position="right" (tap)="logout()">
         <StackLayout>
             <Label text="&#xf08b;" class="fa fa-logout" android:style="padding-right:10"></Label>
         </StackLayout>
     </ActionItem>
 </ActionBar>
-<GridLayout rows="20px,*" backgroundColor="#ECF0F5">
-    <ScrollView row="1" >
+<GridLayout rows="*" backgroundColor="#f3f3f3">
+    <ScrollView row="0" >
 
-        <StackLayout>
+        <StackLayout >
             <GridLayout  *ngFor="let test of tests; let i = index"  rows="*,3*"
-                columns="5*,3*"  class="gridPrincipale" ios:shadowRadius="3">
-                <!--row 0-->
-                <Label row="0" col="0"  color="darkblue" class="h3 title"  
+                columns="5*,3*"   class="gridPrincipale" shadow="2">
+                <!--row 0
+                <Label row="0" col="0"  color="darkblue" class="h3 title" 
                     [text]="test?.test_titre"></Label>
 
                 <StackLayout  row="0" col="1" >
-                    <Label  class="labelScore" *ngIf="(test?.termine == '1')"  [text]="dictionayjson[isFrAr].score+': '+test?.score+'%'"></Label>
+                    <Label  class="labelScore" *ngIf="('test?.termine' == '1')"  [text]="dictionayjson[isFrAr].score+': '+test?.score+'%'"></Label>
                     
-                    <Button bottom="0" 
+                    <Button bottom="0"  
                             fontSize="15"  
                             class="btn btn-primary" 
                             *ngIf="!(test?.termine == '1')" 
                             [text]="dictionayjson[isFrAr].textbutton" (tap)="onPasser(test.test_id)"></Button>
-                </StackLayout>
+                </StackLayout>-->
 
                  <!--row 1-->
                  <ns-item-test [test_item]="test" [dictionayjsontest]="dictionayjson" [isArFr]="isFrAr"></ns-item-test>
-                
+
             </GridLayout>
         </StackLayout>
         

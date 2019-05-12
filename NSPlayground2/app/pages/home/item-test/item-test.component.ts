@@ -28,19 +28,19 @@ export class ItemTestComponent implements OnInit {
     ontapDetail() {
       
       let d = <View>this.detail.nativeElement;
-      let imgd = <View>this.imgD.nativeElement;
       let h = d.height as number;
       let it = this.toggel ? 5 : -5;
 
       var e = setInterval(() => {
-        h += it
+        h += it;
         d.height = h;
-        if (d.height == 70 || d.height == 0) {
+        console.log("height : "+ d.height);
+        if (d.height == 60 || d.height == 0) {
           clearInterval(e);
         }
       }, 1)
 
-      if (this.toggel)
+      /*if (this.toggel)
         imgd.animate({
           rotate: 180,
           duration: 600
@@ -49,7 +49,7 @@ export class ItemTestComponent implements OnInit {
         imgd.animate({
           rotate: 0,
           duration: 600
-        });
+        });*/
 
       this.toggel = !this.toggel
     }

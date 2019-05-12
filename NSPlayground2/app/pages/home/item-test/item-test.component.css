@@ -10,3 +10,44 @@
     height: 35;
     padding: 2;
 }
+
+.labelScore{
+    text-align: center;
+    color: #333;
+    width: 80;
+    font-size: 15;
+    vertical-align: center;
+}
+.labelPasser{
+    text-align: center;
+    color: white;
+    width: 85;
+    border-radius:3;
+    padding: 5 0;
+    background-color: #3DB7D8;
+     font-size: 15;
+    vertical-align: center;
+}
+.title{
+    vertical-align: center;
+    color: #333;
+
+}
+
+.label{
+    font-size: 12;
+    color: #333;
+    vertical-align: center;
+    padding-left: 5;
+
+}
+
+.gridSeconde1{
+    padding: 8 10 8;
+}
+
+.gridSeconde2{
+    padding: 0 10 0;
+    border-bottom-left-radius:3;
+    border-bottom-right-radius:3;
+}

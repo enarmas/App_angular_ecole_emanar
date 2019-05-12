@@ -1,8 +1,22 @@
-<GridLayout backgroundColor="#e6ffff" row="1" colSpan="2" rows="*,*" columns="10*,1*,*1" class="gridSeconde" ios:shadowRadius="3">
-    <!--row 1-->
+<GridLayout row="0" colSpan="2" columns="5*,3*" class="gridSeconde1">
+
+ <Label row="0" col="0"   class="h3 title" (tap)="ontapDetail()"
+ [text]="test_item?.test_titre"></Label>
+
+<StackLayout  row="0" col="1" >
+ <Label  class="labelScore" *ngIf="(test_item?.termine == '1')"  [text]="dictionayjsontest[isArFr].score+': '+test_item?.score+'%'"></Label>
+ 
+ <Label
+        class="labelPasser"
+        *ngIf="!(test_item?.termine == '1')" 
+        [text]="dictionayjsontest[isArFr].textbutton" ></Label>
+</StackLayout>
+</GridLayout>
+<GridLayout backgroundColor="#f5f5f5" row="1" colSpan="2" rows="*,*"  class="gridSeconde2" ios:shadowRadius="3">
+    <!--row 1
     <StackLayout row="0"  col="0" colSpan="3" (tap)="ontapDetail()">
         <Image #imgD class="labelD" opacity="0.2" height="20" width="20" src="~/images/chevron-arrow-down.png"></Image>
-    </StackLayout>
+    </StackLayout>-->
 
     <GridLayout #detail row="1" rows="*,*,*" columns="10*,1*,*1" height="0">
         <Label row="0" col="0" class="label"

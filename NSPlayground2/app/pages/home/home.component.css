@@ -14,11 +14,11 @@
 .gridPrincipale{
     background-color: #fff;
     color: #4d4d4d;
-    margin: 12 12 0;
+    margin: 8 5 0;
     height: auto;
-    border-radius:10;
+    border-radius:5;
     box-shadow: 3 3 12 #999;
-    padding:12 12;
+
 }
 
 .title{

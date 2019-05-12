@@ -1,0 +1,2 @@
+link => https://plugins.nativescript.rocks/plugin/nativescript-ng-shadow
+->tns plugin add nativescript-ng-shadow

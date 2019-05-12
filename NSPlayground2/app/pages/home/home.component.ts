@@ -10,6 +10,7 @@ import { UtilityService } from "../../services/utility.service";
 import { Config } from "../../parameters/config";
 
 import {getBoolean,setBoolean,getNumber,setNumber, getString, setString, hasKey, remove, clear} from "tns-core-modules/application-settings";
+import { ShapeEnum, AndroidData } from "nativescript-ng-shadow";
 
 
 @Component({
@@ -27,13 +28,16 @@ export class HomeComponent implements OnInit {
     dictionayjson;
     isFrAr = 0;
 
+   /* fabShadow: AndroidData = {
+        elevation: 6,
+        bgcolor: '#ff1744',
+        shape: ShapeEnum.OVAL,
+    };*/
+
     @ViewChild("textAr") textAr: ElementRef;
     @ViewChild("textFr") textFr: ElementRef;
 
-    /*@ViewChild("detail") detail: ElementRef;
-    @ViewChild("imgD") imgD: ElementRef;
-
-    toggel = true;*/
+    toggel = true;
 
 
     constructor(private activatedRoute:ActivatedRoute  ,private backendService: BackendService, private routerExtension: RouterExtensions,
@@ -102,32 +106,4 @@ export class HomeComponent implements OnInit {
         //this.routerExtension.navigate(['/welcome',id_test]);
     }
 
-   /* ontapDetail() {
-      
-        let d = <View>this.detail.nativeElement;
-        let imgd = <View>this.imgD.nativeElement;
-        let h = d.height as number;
-        let it = this.toggel ? 5 : -5;
-  
-        var e = setInterval(() => {
-          h += it
-          d.height = h;
-          if (d.height == 70 || d.height == 0) {
-            clearInterval(e);
-          }
-        }, 1)
-  
-        if (this.toggel)
-          imgd.animate({
-            rotate: 180,
-            duration: 600
-          });
-        else
-          imgd.animate({
-            rotate: 0,
-            duration: 600
-          });
-  
-        this.toggel = !this.toggel;
-      }*/
 }
