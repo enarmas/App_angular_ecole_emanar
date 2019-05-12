@@ -1,0 +1,17 @@
+<GridLayout backgroundColor="#e6ffff" row="1" colSpan="2" rows="*,*" columns="10*,1*,*1" class="gridSeconde" ios:shadowRadius="3">
+    <!--row 1-->
+    <StackLayout row="0"  col="0" colSpan="3" (tap)="ontapDetail()">
+        <Image #imgD class="labelD" opacity="0.2" height="20" width="20" src="~/images/chevron-arrow-down.png"></Image>
+    </StackLayout>
+
+    <GridLayout #detail row="1" rows="*,*,*" columns="10*,1*,*1" height="0">
+        <Label row="0" col="0" class="label"
+            [text]="dictionayjsontest[isArFr].professeur+': '+test_item?.professeur"></Label>
+        <!--row 2-->
+        <Label row="1" col="0" class="label" [text]="dictionayjsontest[isArFr].matiere+': '+test_item?.matiere"></Label>
+
+        <!--row 3-->
+        <Label row="2" col="0" class="label"
+            [text]="dictionayjsontest[isArFr].periode+': '+(test_item?.datedebut |  date:'shortDate')+' - '+(test_item?.datefin |  date:'shortDate')"></Label>
+    </GridLayout>
+</GridLayout>

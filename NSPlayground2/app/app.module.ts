@@ -16,6 +16,7 @@ import { AppComponent } from "./app.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { CodeComponent } from "./pages/code/code.component";
+import{ ItemTestComponent} from "./pages/home/item-test/item-test.component"
 
 import { AuthGuard } from "./auth-guard.service";
 
@@ -33,7 +34,8 @@ import { AuthGuard } from "./auth-guard.service";
         AppComponent,
         LoginComponent,
         HomeComponent,
-        CodeComponent
+        CodeComponent,
+        ItemTestComponent
     ],
     providers: [
         BackendService,

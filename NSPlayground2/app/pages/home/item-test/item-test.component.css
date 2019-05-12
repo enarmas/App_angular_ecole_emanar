@@ -1,0 +1,12 @@
+
+.labelD{
+    border-style: solid ;
+    border-color: #bbbbbb;
+    border-width: 2;
+    border-radius: 50%;
+    font-size:20;
+    margin-top: 7;
+    width: 35;
+    height: 35;
+    padding: 2;
+}

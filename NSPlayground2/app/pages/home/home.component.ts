@@ -30,6 +30,11 @@ export class HomeComponent implements OnInit {
     @ViewChild("textAr") textAr: ElementRef;
     @ViewChild("textFr") textFr: ElementRef;
 
+    /*@ViewChild("detail") detail: ElementRef;
+    @ViewChild("imgD") imgD: ElementRef;
+
+    toggel = true;*/
+
 
     constructor(private activatedRoute:ActivatedRoute  ,private backendService: BackendService, private routerExtension: RouterExtensions,
         private utilityService: UtilityService) { }
@@ -56,26 +61,7 @@ export class HomeComponent implements OnInit {
         
         console.log("samrane3home"+JSON.stringify(this.dictionayjson[0]));
 
-       // clear();
-
-        if(getString("username")){
-            console.log(getString("username"));
-        
-        }else{
-            console.log("rien username");
-
-        }
-        
-        if(getString("userage")){
-            console.log(getString("userage"));
-        
-        }else{
-            console.log("rien userage");
-
-        }
-        
-
-
+      
     }
 
     isAr_Fr(check:number){
@@ -110,4 +96,38 @@ export class HomeComponent implements OnInit {
     isTablet() {
         return this.utilityService.isTablet();
     }
+
+    //--------------------------//
+    onPasser(id_test){
+        //this.routerExtension.navigate(['/welcome',id_test]);
+    }
+
+   /* ontapDetail() {
+      
+        let d = <View>this.detail.nativeElement;
+        let imgd = <View>this.imgD.nativeElement;
+        let h = d.height as number;
+        let it = this.toggel ? 5 : -5;
+  
+        var e = setInterval(() => {
+          h += it
+          d.height = h;
+          if (d.height == 70 || d.height == 0) {
+            clearInterval(e);
+          }
+        }, 1)
+  
+        if (this.toggel)
+          imgd.animate({
+            rotate: 180,
+            duration: 600
+          });
+        else
+          imgd.animate({
+            rotate: 0,
+            duration: 600
+          });
+  
+        this.toggel = !this.toggel;
+      }*/
 }
