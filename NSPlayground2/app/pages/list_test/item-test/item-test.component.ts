@@ -13,6 +13,10 @@ export class ItemTestComponent implements OnInit {
     @Input() test_item;
     @Input() dictionayjsontest: any[];
     @Input() isArFr: number;
+
+    columns :Array<string> = ['5*,3*','3*,5*'];
+    col :Array<string> = ['0','1'];
+    
     
     constructor() { }
 
@@ -34,11 +38,13 @@ export class ItemTestComponent implements OnInit {
       var e = setInterval(() => {
         h += it;
         d.height = h;
-        console.log("height : "+ d.height);
+       // console.log("height : "+ d.height);
         if (d.height == 60 || d.height == 0) {
           clearInterval(e);
         }
       }, 1)
+
+
 
       /*if (this.toggel)
         imgd.animate({

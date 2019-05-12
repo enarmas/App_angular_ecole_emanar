@@ -201,7 +201,7 @@ export class LoginComponent implements OnInit {
                             console.log("samrane true");
                             this.user.inscription_id = JSON.stringify(data.inscription_id) ; 
                             this.isAuthenticating = false;
-                            this.routerExtensions.navigate(["/home" ,this.user.inscription_id]);
+                            this.routerExtensions.navigate(["/test" ,this.user.inscription_id]);
                             //this.routerExtensions.navigate(["/home"], { clearHistory: true });
 
                         }else if(JSON.stringify(data.checkpass) == "false"){

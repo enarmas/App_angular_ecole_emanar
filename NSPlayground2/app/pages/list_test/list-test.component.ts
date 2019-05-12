@@ -16,10 +16,10 @@ import { ShapeEnum, AndroidData } from "nativescript-ng-shadow";
 @Component({
     selector: "ns-home",
     moduleId: module.id,
-    templateUrl: "./home.component.html",
-    styleUrls:["./home.component.css"]
+    templateUrl: "./list-test.component.html",
+    styleUrls:["./list-test.component.css"]
 })
-export class HomeComponent implements OnInit {
+export class ListTestComponent implements OnInit {
 
     isLoading = false;
     inscription_id :string;

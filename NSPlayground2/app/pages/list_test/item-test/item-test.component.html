@@ -1,9 +1,9 @@
-<GridLayout row="0" colSpan="2" columns="5*,3*" class="gridSeconde1">
+<GridLayout row="0" colSpan="2" [columns]="columns[isArFr]" class="gridSeconde1">
 
- <Label row="0" col="0"   class="h3 title" (tap)="ontapDetail()"
+ <Label row="0" [col]="isArFr"   class="h3 title" (tap)="ontapDetail()"
  [text]="test_item?.test_titre"></Label>
 
-<StackLayout  row="0" col="1" >
+<StackLayout  row="0" [col]="1-isArFr" >
  <Label  class="labelScore" *ngIf="(test_item?.termine == '1')"  [text]="dictionayjsontest[isArFr].score+': '+test_item?.score+'%'"></Label>
  
  <Label
@@ -18,7 +18,7 @@
         <Image #imgD class="labelD" opacity="0.2" height="20" width="20" src="~/images/chevron-arrow-down.png"></Image>
     </StackLayout>-->
 
-    <GridLayout #detail row="1" rows="*,*,*" columns="10*,1*,*1" height="0">
+    <GridLayout #detail row="1" rows="*,*,*" columns="10*" height="0">
         <Label row="0" col="0" class="label"
             [text]="dictionayjsontest[isArFr].professeur+': '+test_item?.professeur"></Label>
         <!--row 2-->

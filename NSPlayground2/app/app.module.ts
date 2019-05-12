@@ -14,12 +14,13 @@ import { UtilityService } from "./services/utility.service";
 
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "./pages/login/login.component";
-import { HomeComponent } from "./pages/home/home.component";
+import { ListTestComponent } from "./pages/list_test/list-test.component";
 import { CodeComponent } from "./pages/code/code.component";
-import{ ItemTestComponent} from "./pages/home/item-test/item-test.component";
+import{ ItemTestComponent} from "./pages/list_test/item-test/item-test.component";
 import { NgShadowModule } from 'nativescript-ng-shadow';
 
 import { AuthGuard } from "./auth-guard.service";
+
 
 @NgModule({
     bootstrap: [
@@ -35,7 +36,7 @@ import { AuthGuard } from "./auth-guard.service";
     declarations: [
         AppComponent,
         LoginComponent,
-        HomeComponent,
+        ListTestComponent,
         CodeComponent,
         ItemTestComponent
     ],
