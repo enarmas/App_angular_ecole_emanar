@@ -1,0 +1,18 @@
+.iconLang{
+    /*color:darkblue;*/
+    background-color: #3DB7D8;
+    border-radius: 40%;
+    padding: 5 8;
+    margin: 0 5;
+}
+
+.labelPasser{
+    text-align: center;
+    color: white;
+    width: 85;
+    border-radius:3;
+    padding: 5 0;
+    background-color: #3DB7D8;
+     font-size: 15;
+    vertical-align: center;
+}

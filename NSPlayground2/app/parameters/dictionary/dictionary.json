@@ -4,13 +4,25 @@
         "professeur":"Professeur",
         "periode":"Période",
         "score":"Score",
-        "textbutton":"Passer"
+        "passer":"Passer",
+        "nom":"Nom",
+        "prenom":"Prenom",
+        "datePassation":"Date de la passation",
+        "duree" : "Durée",
+        "commencertest":"Commencer le test"
+
     },
     {
         "matiere":"المادة",
         "professeur":"الأستاذ",
         "periode":"الفترة",
         "score":"النتيجة ",
-        "textbutton":"بدء الاختبار"
+        "passer":"بدء الاختبار",
+        "nom":"النسب",
+        "prenom":"الإسم",
+        "datePassation":"تاريخ الاجراء",
+        "duree" : "المدة",
+        "commencertest":"بدء الاختبار"
+
     }
  ]

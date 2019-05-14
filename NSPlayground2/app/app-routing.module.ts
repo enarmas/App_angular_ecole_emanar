@@ -5,6 +5,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 import { LoginComponent } from "./pages/login/login.component";
 import { ListTestComponent } from "./pages/list_test/list-test.component";
+import { PrepareTestComponent } from "./pages/prepare_test/prepare-test.component";
 import { CodeComponent } from "./pages/code/code.component";
 
 import { AuthGuard } from "./auth-guard.service";
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: "code", component: CodeComponent },
     { path: "login", component: LoginComponent },
     { path: "test/:inscription_id", component: ListTestComponent},
+    { path: "preparetest", component: PrepareTestComponent},
 ];
 
 @NgModule({

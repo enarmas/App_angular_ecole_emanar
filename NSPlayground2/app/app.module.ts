@@ -17,6 +17,8 @@ import { LoginComponent } from "./pages/login/login.component";
 import { ListTestComponent } from "./pages/list_test/list-test.component";
 import { CodeComponent } from "./pages/code/code.component";
 import{ ItemTestComponent} from "./pages/list_test/item-test/item-test.component";
+import{ PrepareTestComponent} from "./pages/prepare_test/prepare-test.component";
+
 import { NgShadowModule } from 'nativescript-ng-shadow';
 
 import { AuthGuard } from "./auth-guard.service";
@@ -38,7 +40,8 @@ import { AuthGuard } from "./auth-guard.service";
         LoginComponent,
         ListTestComponent,
         CodeComponent,
-        ItemTestComponent
+        ItemTestComponent,
+        PrepareTestComponent
     ],
     providers: [
         BackendService,
