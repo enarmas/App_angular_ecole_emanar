@@ -17,32 +17,31 @@ Open the file 'app/app.config.ts' and update your Kinvey app's appKey and appSec
     </ActionItem>
    
 </ActionBar>
-    <GridLayout  rows="*,*,*,*,*"  >
+<StackLayout   class="StackLayoutContainer" shadow = "2" >
         <!--row 1-->
-        <Label row="0" class="label"  *ngIf="(isArFr == 0)" 
-            [text]="dictionayjson[isArFr].nom+': '+test?.NomEtu"></Label>
+        <Label  class="label"  *ngIf="(isArFr == 0)" 
+            [text]="dictionayjson[isArFr].nom+': '+test?.NomEtu+' .'"></Label>
 
-        <Label row="0" class="label" class="label"  *ngIf="(isArFr == 1)" 
-            [text]="dictionayjson[isArFr].nom+': '+test?.NomEtuArb"></Label>
+        <Label class="label" class="label"  *ngIf="(isArFr == 1)" 
+            [text]="dictionayjson[isArFr].nom+': '+test?.NomEtuArb+' .'"></Label>
         <!--row 2-->
-        <Label row="1" class="label"  *ngIf="(isArFr == 0)" 
-            [text]="dictionayjson[isArFr].prenom+': '+test?.PrenomEtu"></Label>
+        <Label class="label"  *ngIf="(isArFr == 0)" 
+            [text]="dictionayjson[isArFr].prenom+': '+test?.PrenomEtu+' .'"></Label>
 
-        <Label row="1" class="label" class="label"  *ngIf="(isArFr == 1)" 
-            [text]="dictionayjson[isArFr].prenom+': '+test?.PrenomEtuArb"></Label>
+        <Label  class="label" class="label"  *ngIf="(isArFr == 1)" 
+            [text]="dictionayjson[isArFr].prenom+': '+test?.PrenomEtuArb+' .'"></Label>
         <!--row 3-->
-        <Label row="2" class="label"
-            [text]="dictionayjson[isArFr].datePassation+': '+(myDate | date:'yyyy-MM-dd')"></Label>
+        <Label class="label"
+            [text]="dictionayjson[isArFr].datePassation+': '+(myDate | date:'yyyy-MM-dd')+' .'"></Label>
         <!--row 4--> 
-        <Label row="3" class="label"
-            [text]="dictionayjson[isArFr].duree+': '+(test?.test_duree)"></Label>
+        <Label  class="label"
+            [text]="dictionayjson[isArFr].duree+': '+(test?.test_duree)+' min.'"></Label>
         <!--row 5--> 
-            <Label row="4"
+            <Label #btnComTest
             class="labelPasser"
             *ngIf="!(test_item?.termine == '1')" 
-            [text]="dictionayjson[isArFr].commencertest" 
+            [text]="'&#xa;&#xa;&#xa;'+dictionayjson[isArFr].commencertest" 
            ></Label>
     
-    </GridLayout>
-
+    </StackLayout>
 </Page>

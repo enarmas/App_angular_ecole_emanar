@@ -28,6 +28,8 @@ export class PrepareTestComponent implements OnInit {
 
     @ViewChild("textAr") textAr: ElementRef;
     @ViewChild("textFr") textFr: ElementRef;
+    @ViewChild("btnComTest") btnComTest: ElementRef;
+    
 
 
 
@@ -54,14 +56,18 @@ export class PrepareTestComponent implements OnInit {
         this.isArFr = value;
         let textAr = <View>this.textAr.nativeElement;
         let textFr = <View>this.textFr.nativeElement;
+        let btnComTest = <View>this.btnComTest.nativeElement;
 
         if(value==1){
             textAr.style.color = new Color("darkblue");
             textFr.style.color = new Color("white");
+            btnComTest.width = 85;
         }else if (value==0){
             
             textAr.style.color = new Color("white");
             textFr.style.color = new Color("darkblue");
+            btnComTest.width = 160;
+
         }
         
 
