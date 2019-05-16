@@ -1,4 +1,5 @@
 link => https://plugins.nativescript.rocks/plugin/nativescript-ng-shadow
 ->tns plugin add nativescript-ng-shadow
 
--->zaher
+Link=> https://www.npmjs.com/package/nativescript-checkbox
+->npm i nativescript-checkbox
