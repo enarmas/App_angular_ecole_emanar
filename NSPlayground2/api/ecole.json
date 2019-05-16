@@ -1,0 +1,29 @@
+﻿{ 
+  "ecoles1":
+			{
+			"code":"x45kjop43g67",
+			"ip": "195.110.34.158",
+			"api":"manar/apiManar",
+			"nom":"Groupe Scolaire Manar",
+			"notifications":"http://www.emanar.ma/demo/web/Notifications/",
+			"photos":"http://www.emanar.ma/demo/web/photos/ecoles/",
+			"logo":"http://195.110.34.158/manar/configuration/ecoles/logos/gsmanar.png",
+			"database":"manar",
+			"user":"adminmanar",
+			"password":"manar$123"
+
+			},
+	"ecole2":		{
+			"code":"x46",
+			"ip": "10.1.0.98:8080",
+			"api":"/projects/slimTest/",
+			"nom":"Groupe Scolaire Manar",
+			"notifications":"http://www.emanar.ma/demo/web/Notifications/",
+			"photos":"http://www.emanar.ma/demo/web/photos/ecoles/",
+			"logo":"http://195.110.34.158/manar/configuration/ecoles/logos/manar4.png",
+			"database":"manar2",
+			"user":"root",
+			"password":""
+			  
+		   	}
+		}
