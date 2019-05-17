@@ -23,6 +23,10 @@ import { NgShadowModule } from 'nativescript-ng-shadow';
 
 import { AuthGuard } from "./auth-guard.service";
 
+import { TNSCheckBoxModule } from 'nativescript-checkbox/angular';
+import {QuestionComponent} from './pages/questions/question.component'
+import { QuestionRoutingModule } from "./pages/questions/question-routing.module"
+import { QuestionSlidesService } from "./pages/questions/question-slides.service";
 
 @NgModule({
     bootstrap: [
@@ -33,7 +37,9 @@ import { AuthGuard } from "./auth-guard.service";
         NativeScriptFormsModule,
         AppRoutingModule,
         HttpClientModule,
-        NgShadowModule
+        NgShadowModule,
+        QuestionRoutingModule,
+        TNSCheckBoxModule
     ],
     declarations: [
         AppComponent,
@@ -41,12 +47,14 @@ import { AuthGuard } from "./auth-guard.service";
         ListTestComponent,
         CodeComponent,
         ItemTestComponent,
-        PrepareTestComponent
+        PrepareTestComponent,
+        QuestionComponent
     ],
     providers: [
         BackendService,
         UtilityService,
         CodeService,
+        QuestionSlidesService,
         [AuthGuard]
     ],
     schemas: [

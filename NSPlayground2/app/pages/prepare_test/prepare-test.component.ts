@@ -33,7 +33,9 @@ export class PrepareTestComponent implements OnInit {
 
 
 
-    constructor( private backendService: BackendService, private routerExtension: RouterExtensions,
+    constructor( 
+        private backendService: BackendService, 
+        private routerExtension: RouterExtensions,
         private utilityService: UtilityService) { 
             
         }
@@ -44,7 +46,7 @@ export class PrepareTestComponent implements OnInit {
         console.log("test_titre_pre: "+getString("test_titre_pre"));
     
         this.test.test_titre= getString("test_titre_pre");
-
+        this.test.test_id = getString("test_id_pre");
         this.test.test_duree= getString("test_duree_pre");
         this.test.NomEtu= getString("NomEtu_pre");
         this.test.PrenomEtu= getString("PrenomEtu_pre");
@@ -81,5 +83,8 @@ export class PrepareTestComponent implements OnInit {
         return this.utilityService.isTablet();
     }
 
-   
+   //-----------------//
+   onPasse(){
+    this.routerExtension.navigate(['/question', this.test.test_id]);
+   }
 }

@@ -40,7 +40,10 @@ export class ListTestComponent implements OnInit {
     toggel = true;
 
 
-    constructor(private activatedRoute:ActivatedRoute  ,private backendService: BackendService, private routerExtension: RouterExtensions,
+    constructor(
+        private activatedRoute:ActivatedRoute  ,
+        private backendService: BackendService, 
+        private routerExtension: RouterExtensions,
         private utilityService: UtilityService) { }
 
     ngOnInit(): void {

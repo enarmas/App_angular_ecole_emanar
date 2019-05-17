@@ -1,0 +1,54 @@
+
+<GridLayout (swipe)="onSwipe($event)">
+	<GridLayout rows="3*, *">
+		<GridLayout row="0" rows="*" class="m-t-20">
+			<ContentView #slideContent row="0" id="slide-content">
+				<GridLayout row="0" rows="*" #gridViewC >
+					<GridLayout 
+						*ngFor="let itemQ of listeQuestion;let i = index" 
+						row="0" 
+						rows="3*, 3*"
+						columns="10, *, 10" 
+						margin="2.5 30" 
+						padding="10 0" 
+						borderRadius="10" 
+						id="gridMain">
+						<StackLayout row="0" col="1" backgroundColor="#3333ff" height="100%" width="100%"
+							verticalAlignment="top" horizontalAlignment="left" borderRadius="5">
+							<Label class="list-group-item-heading labelQ" [text]="itemQ.ennonce"></Label>
+							<Image src="~/images/logo.png" ></Image>
+						</StackLayout>
+						<StackLayout *ngIf="getTypeQuestion(itemQ).type=='r'" margin="20 20" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
+							horizontalAlignment="left" borderRadius="5">
+							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>0" class="checkR" [text]="itemQ.rep1" ></CheckBox>
+							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>1" class="checkR" [text]="itemQ.rep2"></CheckBox>
+							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>2" class="checkR" [text]="itemQ.rep3" ></CheckBox>
+							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>3" class="checkR" [text]="itemQ.rep4" ></CheckBox>
+							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>4" class="checkR" [text]="itemQ.rep1" ></CheckBox>
+						</StackLayout>
+						<StackLayout *ngIf="getTypeQuestion(itemQ).type=='t'" margin="20 20" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
+						horizontalAlignment="left" borderRadius="5">
+							<Label [text]="" width="100%"></Label>
+							<TextField color="#000000" margin="20" width="80%"></TextField>
+						</StackLayout>
+					</GridLayout>
+
+				</GridLayout>
+			</ContentView>
+		</GridLayout>
+		<GridLayout row="2" rows="auto, auto">
+			<GridLayout row="0" rows="*" columns="*, auto, *" id="carousel-slider" class="m-b-20">
+				<StackLayout [ngClass]="getSliderItemClass(0)" verticalAlignment="top" col="0"
+					horizontalAlignment="right"></StackLayout>
+				<StackLayout [ngClass]="getSliderItemClass(1)" style="margin: 0 5" verticalAlignment="top" col="1"
+					horizontalAlignment="center"></StackLayout>
+				<StackLayout [ngClass]="getSliderItemClass(2)" verticalAlignment="top" col="2"
+					horizontalAlignment="left"></StackLayout>
+			</GridLayout>
+			<GridLayout row="1" rows="auto" verticalAlignment="bottom" class="m-t-10">
+				<Button text="Get Started" class="opensans-semi-bold skip-intro" (tap)="skipIntro()"></Button>
+				<Label [text]="getTypeQuestion(listeQuestion[0]).type"></Label>
+			</GridLayout>
+		</GridLayout>
+	</GridLayout>
+</GridLayout>

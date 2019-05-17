@@ -1,0 +1,26 @@
+/*-----------------------**/
+#gridMain{
+    border-width: 2;
+    border-color: blue;
+    height:96%;
+  }
+  .labelQ{
+    color: white;
+    margin: 20 20;
+    font-size: 22px;
+  }
+  .checkR{
+    font-size: 18px;
+    margin: 5 5;
+  }
+
+  .caro-item-dot {
+    background-color: blueviolet;
+    border-radius: 6;
+    height: 12;
+    width: 12;
+}
+
+.caro-item-dot-selected {
+    opacity: .3;
+}

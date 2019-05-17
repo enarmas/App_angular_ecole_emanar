@@ -10,12 +10,15 @@ import { CodeComponent } from "./pages/code/code.component";
 
 import { AuthGuard } from "./auth-guard.service";
 
+import {QuestionComponent} from './pages/questions/question.component'
+
 const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "code", component: CodeComponent },
     { path: "login", component: LoginComponent },
     { path: "test/:inscription_id", component: ListTestComponent},
     { path: "preparetest", component: PrepareTestComponent},
+    { path: "question/:id_test", component: QuestionComponent }
 ];
 
 @NgModule({
