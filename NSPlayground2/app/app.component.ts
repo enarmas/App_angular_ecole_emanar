@@ -28,11 +28,12 @@ export class AppComponent {
             Config.ip = this.connectionString[0].ip;
             Config.api = this.connectionString[0].api;
             Config.nameSchool = this.connectionString[0].nameSchool ;
-            Config.photosUrl = this.connectionString[0].photosUrl ;
-            Config.nameDB = this.connectionString[0].nameDB;
-            Config.userDB = this.connectionString[0].userDB;
-            Config.passDB = this.connectionString[0].passDB;
+            Config.photosUrl = this.connectionString[0].photos ;
+            Config.nameDB = this.connectionString[0].database;
+            Config.userDB = this.connectionString[0].user;
+            Config.passDB = this.connectionString[0].password;
 
+    
             this.routerExtensions.navigate(["/login"]);
         
         }else{

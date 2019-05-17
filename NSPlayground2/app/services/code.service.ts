@@ -24,14 +24,13 @@ export class CodeService {
     public getFileJson(codeSchool:string) :  Observable<any>{
            
         let code = '[{"codeSchool": "'+codeSchool+'"}]';
+        return this.http.post("http://10.1.0.48:8080/projects/slimTest/index.php/checkCodeschool", code);
 
         //return this.http.post("http://10.1.0.98:8080/projects/slimTest/index.php/checkCodeschool",code) ;
         //return this.http.post("http://192.168.1.13:8080/projects/slimTest/index.php/checkCodeschool",code) ;
   // return this.http.get("http://10.1.0.98:8080/projects/slimTest/ecole2.json") ;
   //---- azzden-----//
 
-  return this.http.post("http://10.1.0.152:8080/projects/slimTest/index.php/checkCodeschool", code);
-  //return this.http.post("http://192.168.1.104:8080/projects/slimTest/index.php/checkCodeschool", code);
   //return this.http.post("http://192.168.1.13:8080/projects/slimTest/index.php/checkCodeschool",code) ;
   // return this.http.get("http://10.1.0.98:8080/projects/slimTest/ecole2.json") 
     }

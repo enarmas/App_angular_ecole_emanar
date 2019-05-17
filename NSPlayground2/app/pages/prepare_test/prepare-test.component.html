@@ -37,12 +37,12 @@ Open the file 'app/app.config.ts' and update your Kinvey app's appKey and appSec
         <Label  class="label"
             [text]="dictionayjson[isArFr].duree+': '+(test?.test_duree)+' min.'"></Label>
         <!--row 5--> 
-            <Button #btnComTest
+            <label #btnComTest
             class="labelPasser"
             *ngIf="!(test_item?.termine == '1')" 
             [text]="'&#xa;&#xa;&#xa;'+dictionayjson[isArFr].commencertest" 
             (tap)="onPasse()"
-           ></Button>
+           ></label>
     
     </StackLayout>
 </Page>

@@ -73,15 +73,20 @@ export class QuestionComponent implements OnInit {
             data => {
                 this.listeQuestion = data;
                 this.slideCount = this.listeQuestion.length;
-                console.log("zaher mizyan question")
-                console.log(this.listeQuestion)
+                console.log("zaher mizyan question");
+                console.log(this.listeQuestion);
+                
                 this.slideView = this.slideElement.nativeElement;
                 let gridViewC: GridLayout = this.gridViewC.nativeElement as GridLayout;
                 this.slideView.content = (this.slidesView = gridViewC);
                 setTimeout(() => {
                     for (let i = 1; i < this.slideCount; i++)
                         this.slidesView.getChildAt(i).opacity = 0;
-                }, 50)
+                }, 50);
+
+                console.log("http://"+this.pathImage.ip+this.pathImage.photosUrl+ this.listeQuestion[1].image);
+							
+
             },
             error => {
                 console.log("error question");

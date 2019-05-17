@@ -138,6 +138,8 @@ export class CodeComponent implements OnInit {
             this.isAuthenticating = true; 
             console.log("samrane1code");
 
+            this.loginError ="";
+
         
             this.codeService.getFileJson(this.codeSchool)
             .subscribe(
@@ -175,7 +177,7 @@ export class CodeComponent implements OnInit {
                 error=>{
                     console.log("samrane2codeError "+ JSON.stringify(error.error));
                     this.isAuthenticating = false;
-                    this.loginError = error.message;
+                    this.loginError = "chemin est incorrect : "+ error.message;
                 } 
             ); 
     

@@ -7,7 +7,7 @@
   .labelQ{
     color: white;
     margin: 20 20;
-    font-size: 22px;
+    font-size: 20px;
   }
   .checkR{
     font-size: 18px;
@@ -23,4 +23,9 @@
 
 .caro-item-dot-selected {
     opacity: .3;
+}
+
+.imageQuestion{
+  height: 40;
+  width: 40;
 }

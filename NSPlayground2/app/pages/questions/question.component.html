@@ -7,7 +7,7 @@
 					<GridLayout 
 						*ngFor="let itemQ of listeQuestion;let i = index" 
 						row="0" 
-						rows="3*, 3*"
+						rows="*, 3*"
 						columns="10, *, 10" 
 						margin="2.5 30" 
 						padding="10 0" 
@@ -15,8 +15,8 @@
 						id="gridMain">
 						<StackLayout row="0" col="1" backgroundColor="#3333ff" height="100%" width="100%"
 							verticalAlignment="top" horizontalAlignment="left" borderRadius="5">
-							<Label class="list-group-item-heading labelQ" [text]="itemQ.ennonce"></Label>
-							<Image *ngIf="itemQ.image != null" [src]="'http://'+pathImage.ip+pathImage.photosUrl+itemQ.image" ></Image>
+							<Label class="list-group-item-heading labelQ"  textWrap="true" [text]="itemQ.ennonce"></Label>
+							<Image *ngIf="itemQ.image != null" class="imageQuestion" ></Image>
 						</StackLayout>
 						<StackLayout *ngIf="getTypeQuestion(itemQ).type=='r'" margin="20 20" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
 							horizontalAlignment="left" borderRadius="5">
@@ -24,7 +24,8 @@
 							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>1" class="checkR" [text]="itemQ.rep2"></CheckBox>
 							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>2" class="checkR" [text]="itemQ.rep3" ></CheckBox>
 							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>3" class="checkR" [text]="itemQ.rep4" ></CheckBox>
-							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>4" class="checkR" [text]="itemQ.rep1" ></CheckBox>
+							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>4" class="checkR" [text]="itemQ.rep5" ></CheckBox>
+							<CheckBox *ngIf="getTypeQuestion(itemQ).nPro>5" class="checkR" [text]="itemQ.rep6" ></CheckBox>
 						</StackLayout>
 						<StackLayout *ngIf="getTypeQuestion(itemQ).type=='t'" margin="20 20" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
 						horizontalAlignment="left" borderRadius="5">
