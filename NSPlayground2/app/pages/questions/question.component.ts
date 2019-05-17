@@ -15,8 +15,8 @@ import * as builder from "ui/builder";
 import { QuestionSlidesService } from "./question-slides.service";
 import { ActivatedRoute } from "@angular/router";
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout/stack-layout";
-
-
+import {Question} from "../../services/question";
+import { Config } from "../../parameters/config";
 
 declare var android: any;
 
@@ -28,8 +28,8 @@ declare var android: any;
 })
 export class QuestionComponent implements OnInit {
     //--------------//
-    listeQuestion = []
-
+    listeQuestion:Question[] ;
+    pathImage = Config;
     //---------------//
     // private slidesPath = 'pages/question/slides';
     // private slideFiles = ['slide1.xml', 'slide2.xml', 'slide3.xml'];
@@ -81,7 +81,7 @@ export class QuestionComponent implements OnInit {
                 setTimeout(() => {
                     for (let i = 1; i < this.slideCount; i++)
                         this.slidesView.getChildAt(i).opacity = 0;
-                }, 30)
+                }, 50)
             },
             error => {
                 console.log("error question");

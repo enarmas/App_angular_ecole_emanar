@@ -19,7 +19,7 @@ export class AppComponent {
 
     ngOnInit(): void {
 
-        clear();
+        //clear();
         if(getString("connectionString")){
 
             this.connectionString = JSON.parse(getString("connectionString"));

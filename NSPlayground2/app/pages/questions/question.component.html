@@ -16,7 +16,7 @@
 						<StackLayout row="0" col="1" backgroundColor="#3333ff" height="100%" width="100%"
 							verticalAlignment="top" horizontalAlignment="left" borderRadius="5">
 							<Label class="list-group-item-heading labelQ" [text]="itemQ.ennonce"></Label>
-							<Image src="~/images/logo.png" ></Image>
+							<Image *ngIf="itemQ.image != null" [src]="'http://'+pathImage.ip+pathImage.photosUrl+itemQ.image" ></Image>
 						</StackLayout>
 						<StackLayout *ngIf="getTypeQuestion(itemQ).type=='r'" margin="20 20" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
 							horizontalAlignment="left" borderRadius="5">
