@@ -1,12 +1,25 @@
-<GridLayout (swipe)="onSwipe($event.direction)">
-	<GridLayout rows="auto,4*, *">
-		<GridLayout row="0" columns="1*,3*,1*" height="auto" verticalAlignment="top">
-			<GridLayout col="0">
+<StackLayout height="100%" backgroundColor="#f3f3f3" *ngIf="!showSlideQuestion" columns="" verticalAlignment="center"
+	horizontalAlignment="center">
+	<Label class="labelLoad" verticalAlignment="center" horizontalAlignment="center"
+		[text]="dictionayjson[0].loading"></Label>
+	<Progress width="90%" (loaded)="onProgressBarLoaded($event)" (valueChange)="onValueChanged($event)" color="#0C2633"
+		backgroundColor="#FFFF66" class="m-20">
+	</Progress>
+</StackLayout>
+
+<GridLayout backgroundColor="#f3f3f3" #gridMain (swipe)="onSwipe($event.direction,500)">
+	<GridLayout rows="auto,auto,auto">
+
+		<GridLayout height="85" backgroundColor="#0C2633" row="0" rows="*" columns="3*,2*" verticalAlignment="bottom">
+			<GridLayout col="0" row="0">
 			</GridLayout>
 
-			<GridLayout col="2" margin="20">
-				<circularProgressBar [Textvalue]="timeQCM" [size]="80" [progress]="70"></circularProgressBar>
-			</GridLayout>
+			<StackLayout verticalAlignment="bottom" row="0" col="1" horizontalAlignment="right"
+				orientation="horizontal">
+				<circularProgressBar [Textvalue]="timeQCM" [size]="50" [progress]="70"></circularProgressBar>
+
+				<circularProgressBar [Textvalue]="timeSecond" [size]="30" [progress]="70"></circularProgressBar>
+			</StackLayout>
 		</GridLayout>
 
 		<GridLayout row="1" rows="*" class="m-t-20">
@@ -15,9 +28,8 @@
 					<GridLayout *ngFor="let itemQ of listeQuestion;let i = index" row="0" rows="auto, 3*"
 						columns="10, *, 10" margin="2.5 30" padding="10 0" borderRadius="10" id="gridMain">
 						<!--Row 0 : Zon des questions-->
-						<GridLayout rows="auto,auto" row="0" col="1"
-							backgroundColor="#3333ff"  width="100%" verticalAlignment="top"
-							horizontalAlignment="left" borderRadius="5">
+						<GridLayout rows="auto,auto" row="0" col="1" backgroundColor="#0C2633" width="100%"
+							verticalAlignment="top" horizontalAlignment="left" borderRadius="5">
 							<StackLayout row="0">
 								<Label class="list-group-item-heading labelQ" textWrap="true"
 									[text]="itemQ.ennonce"></Label></StackLayout>
@@ -27,125 +39,97 @@
 							</StackLayout>
 						</GridLayout>
 						<!--Row 1 : les Radio Button-->
-						<GridLayout rows="auto,auto,auto,auto,auto,auto"
-							*ngIf="getTypeQuestion(itemQ).type=='r'"
-							margin="20 20" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
+						<GridLayout rows="auto,auto,auto,auto,auto,auto" *ngIf="getTypeQuestion(itemQ).type=='r'"
+							margin="20 0 20 0" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
 							horizontalAlignment="left" borderRadius="5">
 							<StackLayout row="0">
-								<CheckBox 
-								#elem1
-								boxType="circle"
-								(checkedChange)="elem1.checked != elatRadio(itemQ.id,itemQ.rep1) &&changeCheckedRadio(itemQ.id,itemQ.rep1)"
-								[checked]="elatRadio(itemQ.id,itemQ.rep1)"
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>0"  
-								class="checkR" [text]="itemQ.rep1">
+								<CheckBox #elem1 boxType="circle"
+									(checkedChange)="elem1.checked != elatRadio(itemQ.id,itemQ.rep1) &&changeCheckedRadio(itemQ.id,itemQ.rep1)"
+									[checked]="elatRadio(itemQ.id,itemQ.rep1)" (tap)="onCheckBoxTap()"
+									[isEnabled]="i==currentSlideNum" *ngIf="getTypeQuestion(itemQ).nPro>0"
+									class="checkR" [text]="itemQ.rep1">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="1">
-								<CheckBox 
-								#elem2
-								boxType="circle" 
-								(checkedChange)="elem2.checked != elatRadio(itemQ.id,itemQ.rep2) &&changeCheckedRadio(itemQ.id,itemQ.rep2)"
-								[checked]="elatRadio(itemQ.id,itemQ.rep2)"
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>1" class="checkR" [text]="itemQ.rep2">
+								<CheckBox #elem2 boxType="circle"
+									(checkedChange)="elem2.checked != elatRadio(itemQ.id,itemQ.rep2) &&changeCheckedRadio(itemQ.id,itemQ.rep2)"
+									[checked]="elatRadio(itemQ.id,itemQ.rep2)" [isEnabled]="i==currentSlideNum"
+									*ngIf="getTypeQuestion(itemQ).nPro>1" class="checkR" [text]="itemQ.rep2">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="2">
-								<CheckBox 
-								#elem3
-								boxType="circle"
-								(checkedChange)="elem3.checked != elatRadio(itemQ.id,itemQ.rep3) &&changeCheckedRadio(itemQ.id,itemQ.rep3)"
-								[checked]="elatRadio(itemQ.id,itemQ.rep3)"
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>2" class="checkR" [text]="itemQ.rep3">
+								<CheckBox #elem3 boxType="circle"
+									(checkedChange)="elem3.checked != elatRadio(itemQ.id,itemQ.rep3) &&changeCheckedRadio(itemQ.id,itemQ.rep3)"
+									[checked]="elatRadio(itemQ.id,itemQ.rep3)" [isEnabled]="i==currentSlideNum"
+									*ngIf="getTypeQuestion(itemQ).nPro>2" class="checkR" [text]="itemQ.rep3">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="3">
-								<CheckBox 
-								#elem4
-								boxType="circle"
-								(checkedChange)="elem4.checked != elatRadio(itemQ.id,itemQ.rep4) &&changeCheckedRadio(itemQ.id,itemQ.rep4)"
-								[checked]="elatRadio(itemQ.id,itemQ.rep4)"
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>3" class="checkR" [text]="itemQ.rep4">
+								<CheckBox #elem4 boxType="circle"
+									(checkedChange)="elem4.checked != elatRadio(itemQ.id,itemQ.rep4) &&changeCheckedRadio(itemQ.id,itemQ.rep4)"
+									[checked]="elatRadio(itemQ.id,itemQ.rep4)" [isEnabled]="i==currentSlideNum"
+									*ngIf="getTypeQuestion(itemQ).nPro>3" class="checkR" [text]="itemQ.rep4">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="4">
-								<CheckBox 
-								#elem5
-								boxType="circle"
-								(checkedChange)="elem5.checked != elatRadio(itemQ.id,itemQ.rep5) &&changeCheckedRadio(itemQ.id,itemQ.rep5)"
-								[checked]="elatRadio(itemQ.id,itemQ.rep5)"
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>4" class="checkR" [text]="itemQ.rep5">
+								<CheckBox #elem5 boxType="circle"
+									(checkedChange)="elem5.checked != elatRadio(itemQ.id,itemQ.rep5) &&changeCheckedRadio(itemQ.id,itemQ.rep5)"
+									[checked]="elatRadio(itemQ.id,itemQ.rep5)" [isEnabled]="i==currentSlideNum"
+									*ngIf="getTypeQuestion(itemQ).nPro>4" class="checkR" [text]="itemQ.rep5">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="5">
-								<CheckBox 
-								#elem6
-								boxType="circle"
-								(checkedChange)="elem6.checked != elatRadio(itemQ.id,itemQ.rep6) &&changeCheckedRadio(itemQ.id,itemQ.rep6)"
-								[checked]="elatRadio(itemQ.id,itemQ.rep6)"
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>5" class="checkR" [text]="itemQ.rep6">
+								<CheckBox #elem6 boxType="circle"
+									(checkedChange)="elem6.checked != elatRadio(itemQ.id,itemQ.rep6) &&changeCheckedRadio(itemQ.id,itemQ.rep6)"
+									[checked]="elatRadio(itemQ.id,itemQ.rep6)" [isEnabled]="i==currentSlideNum"
+									*ngIf="getTypeQuestion(itemQ).nPro>5" class="checkR" [text]="itemQ.rep6">
 								</CheckBox>
 							</StackLayout>
 						</GridLayout>
 						<!--Row 2 : les ChechBox-->
-						<GridLayout rows="auto,auto,auto,auto,auto,auto"
-							*ngIf="getTypeQuestion(itemQ).type=='c'"
-							margin="20 20" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
+						<GridLayout rows="auto,auto,auto,auto,auto,auto" *ngIf="getTypeQuestion(itemQ).type=='c'"
+							margin="20 0 20 0" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
 							horizontalAlignment="left" borderRadius="5">
 							<StackLayout row="0">
-								<CheckBox 
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>0"  
-								class="checkR" [text]="itemQ.rep1">
+								<CheckBox [isEnabled]="i==currentSlideNum" *ngIf="getTypeQuestion(itemQ).nPro>0"
+									class="checkR" [text]="itemQ.rep1">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="1">
-								<CheckBox 
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>1" class="checkR" [text]="itemQ.rep2">
+								<CheckBox [isEnabled]="i==currentSlideNum" *ngIf="getTypeQuestion(itemQ).nPro>1"
+									class="checkR" [text]="itemQ.rep2">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="2">
-								<CheckBox 
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>2" class="checkR" [text]="itemQ.rep3">
+								<CheckBox [isEnabled]="i==currentSlideNum" *ngIf="getTypeQuestion(itemQ).nPro>2"
+									class="checkR" [text]="itemQ.rep3">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="3">
-								<CheckBox 
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>3" class="checkR" [text]="itemQ.rep4">
+								<CheckBox [isEnabled]="i==currentSlideNum" *ngIf="getTypeQuestion(itemQ).nPro>3"
+									class="checkR" [text]="itemQ.rep4">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="4">
-								<CheckBox 
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>4" class="checkR" [text]="itemQ.rep5">
+								<CheckBox [isEnabled]="i==currentSlideNum" *ngIf="getTypeQuestion(itemQ).nPro>4"
+									class="checkR" [text]="itemQ.rep5">
 								</CheckBox>
 							</StackLayout>
 							<StackLayout row="5">
-								<CheckBox 
-								[isEnabled] ="i==currentSlideNum"
-								*ngIf="getTypeQuestion(itemQ).nPro>5" class="checkR" [text]="itemQ.rep6">
+								<CheckBox [isEnabled]="i==currentSlideNum" *ngIf="getTypeQuestion(itemQ).nPro>5"
+									class="checkR" [text]="itemQ.rep6">
 								</CheckBox>
 							</StackLayout>
 						</GridLayout>
 						<!--Row 3 : Zone de Text-->
-						<GridLayout rows="auto,1*"
-							*ngIf="getTypeQuestion(itemQ).type=='t'"
-							margin="20 20" row="1" col="1" height="100%" width="100%" verticalAlignment="top"
-							horizontalAlignment="center" borderRadius="5">
+						<GridLayout rows="auto,1*" *ngIf="getTypeQuestion(itemQ).type=='t'" margin="20 20" row="1"
+							col="1" height="100%" width="100%" verticalAlignment="top" horizontalAlignment="center"
+							borderRadius="5">
 							<StackLayout row="0">
 								<Label text="Votre repend :"></Label>
 							</StackLayout>
 							<StackLayout verticalAlignment="top" row="1">
-								<TextField [isEnabled] ="i==currentSlideNum" width="90%"></TextField>
+								<TextField [isEnabled]="i==currentSlideNum" width="90%"></TextField>
 							</StackLayout>
 						</GridLayout>
 					</GridLayout>
@@ -154,12 +138,10 @@
 		</GridLayout>
 		<GridLayout row="2" rows="auto, auto">
 			<!--Row 0-->
-			<StackLayout horizontalAlignment="center" orientation="horizontal" row="0" id="carousel-slider" class="m-b-20">
-				<Label *ngFor="let itemQ of listeQuestion;let i = index"  
-					[ngClass]="getSliderItemClass(i)" 
-					verticalAlignment="center"
-					[text]="i+1"
-					horizontalAlignment="center">
+			<StackLayout horizontalAlignment="center" orientation="horizontal" row="0" id="carousel-slider"
+				class="m-b-20">
+				<Label *ngFor="let itemQ of listeQuestion;let i = index" [ngClass]="getSliderItemClass(i)"
+					verticalAlignment="center" [text]="i+1" horizontalAlignment="center">
 				</Label>
 			</StackLayout>
 			<!--Row 1-->
@@ -167,10 +149,10 @@
 				<GridLayout columns="1*,3*,5*,3*,1*" height="60">
 					<GridLayout #tabHighlight col="0"></GridLayout>
 					<GridLayout col="1">
-						<Button  class="btnMove" [text]="'Prevous'" (tap)="onSwipe(1)"></Button>
+						<Button class="btnMove" text='<' (tap)="onSwipe(1)"></Button>
 					</GridLayout>
 					<GridLayout col="3">
-						<Button class="btnMove" [text]="'Next'" (tap)="onSwipe(2)"></Button>
+						<Button class="btnMove" text='>' (tap)="onSwipe(2)"></Button>
 					</GridLayout>
 				</GridLayout>
 			</GridLayout>

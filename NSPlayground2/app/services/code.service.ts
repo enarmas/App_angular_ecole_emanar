@@ -31,8 +31,8 @@ export class CodeService {
         // return this.http.get("http://10.1.0.98:8080/projects/slimTest/ecole2.json") ;
         //---- azzden-----//
 
-       //return this.http.post("http://192.168.1.104:8080/projects/slimTest/index.php/checkCodeschool", code);//dar
-       return this.http.post("http://10.1.0.104:8080/projects/slimTest/index.php/checkCodeschool", code);//ista
+       return this.http.post("http://192.168.1.104:8080/projects/slimTest/index.php/checkCodeschool", code);//dar
+      // return this.http.post("http://10.1.0.104:8080/projects/slimTest/index.php/checkCodeschool", code);//ista
         // return this.http.get("http://10.1.0.98:8080/projects/slimTest/ecole2.json") 
     }
 } 

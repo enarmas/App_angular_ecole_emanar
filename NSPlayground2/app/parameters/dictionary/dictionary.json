@@ -9,8 +9,8 @@
         "prenom":"Prenom",
         "datePassation":"Date de la passation",
         "duree" : "Durée",
-        "commencertest":"Commencer le test"
-
+        "commencertest":"Commencer le test",
+        "loading":"chargement ..."
     },
     {
         "matiere":"المادة",
@@ -22,7 +22,8 @@
         "prenom":"الإسم",
         "datePassation":"تاريخ الاجراء",
         "duree" : "المدة",
-        "commencertest":"بدء الاختبار"
+        "commencertest":"بدء الاختبار",
+        "loading":"تحميل ..."
 
     }
  ]

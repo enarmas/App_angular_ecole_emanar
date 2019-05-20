@@ -20,6 +20,10 @@ import { Config } from "../../parameters/config";
 
 
 import { RadioOption } from "../../services/radio-option";
+
+import { Progress } from "tns-core-modules/ui/progress";
+import { getString } from "tns-core-modules/application-settings/application-settings";
+
 declare var android: any;
 
 @Component({
@@ -32,18 +36,22 @@ export class QuestionComponent implements OnInit {
     //--------------//
     listeQuestion: Question[];
     pathImage = Config;
-    timeQCM = 30;
+    timeQCM;
+    timeSecond;
     radioOptions = [];
+    showSlideQuestion = false;
+    dictionayjson;
     //---------------//
     public id_test;
     public currentSlideNum: number = 0;
-    private slideCount:number;
+    private slideCount: number;
 
     private screenWidth;
     private slidesView: GridLayout;
 
     @ViewChild('slideContent') slideElement: ElementRef;
     @ViewChild('gridViewC') gridViewC: ElementRef;
+    @ViewChild('gridMain') gridMain: ElementRef;
     private slideView: ContentView;
 
     constructor(
@@ -70,8 +78,12 @@ export class QuestionComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.dictionayjson = require(Config.dictionaryUrl);
         this.id_test = this.activatedRoute.snapshot.paramMap.get('id_test');
-
+        this.timeQCM = getString("test_duree_pre");
+        this.timeSecond=60;
+        let gridMain: GridLayout = this.gridMain.nativeElement as GridLayout;
+        gridMain.height = 0
         this.questionService.getListQuestions(this.id_test).subscribe(
             data => {
                 this.listeQuestion = data;
@@ -103,8 +115,17 @@ export class QuestionComponent implements OnInit {
                     for (let i = 1; i < this.slideCount; i++) {
                         this.slidesView.getChildAt(i).opacity = 0;
                     }
-                }, 50);
-               
+
+                    this.listeQuestion.forEach(item => {
+                        let ii = 0;
+                        this.onSwipe(2, 10)
+                        console.log(ii++)
+
+                    }, 50);
+
+                    console.log(this.currentSlideNum)
+                })
+
             },
             error => {
                 console.log("error question");
@@ -114,16 +135,51 @@ export class QuestionComponent implements OnInit {
         this.page.actionBarHidden = true;
         this.page.cssClasses.add("welcome-page-background");
         this.page.backgroundSpanUnderStatusBar = true;
-        //------------time circulation --------//
-        var a = setInterval(() => {
-            this.timeQCM -= 1;
-            if (this.timeQCM == 0)
-                clearInterval(a);
-        }, 1000);
+
 
     }
+    //-------------------------------//
 
-    onSwipe(direction: number) {
+    onProgressBarLoaded(args) {
+        let myProgressBar = <Progress>args.object;
+
+        myProgressBar.value = 10;
+        myProgressBar.maxValue = 200;
+
+        setInterval(function () {
+            myProgressBar.value += 4;
+        }, 100);
+    }
+
+    onValueChanged(args) {
+        let myProgressBar = <Progress>args.object;
+
+        console.log("Old Value: " + args.oldValue);
+        console.log("New Value: " + args.value);
+        if (args.value == 200) {
+            this.showSlideQuestion = true;
+            let gridMain: GridLayout = this.gridMain.nativeElement as GridLayout;
+            gridMain.height = 10000;
+            //------------time circulation --------//
+            var timeM = setInterval(() => {
+                this.timeQCM -= 1;
+                this.timeSecond =60;
+                if (this.timeQCM == 0){
+                    clearInterval(timeM);
+                }
+                   
+            }, 60000);
+
+            var timeS = setInterval(() => {
+                this.timeSecond -= 1;
+                if (this.timeQCM == 0)
+                    clearInterval(timeS);
+            }, 1000);
+        }
+    }
+
+    //-------------------------------//
+    onSwipe(direction: number, duree: number) {
 
         let prevSlideNum = this.currentSlideNum;
         let count = this.slideCount;
@@ -141,24 +197,24 @@ export class QuestionComponent implements OnInit {
         const nextSlide = this.slidesView.getChildAt(this.currentSlideNum);
 
         console.log(this.currentSlideNum);
-        this.animate(currSlide, nextSlide, direction);
+        this.animate(currSlide, nextSlide, direction, duree);
     }
 
-    animate(currSlide, nextSlide, direction) {
+    animate(currSlide, nextSlide, direction, duree) {
         nextSlide.translateX = (direction == 2 ? this.screenWidth : -this.screenWidth);
         nextSlide.opacity = 1;
         var definitions = new Array<AnimationDefinition>();
         var defn1: AnimationDefinition = {
             target: currSlide,
             translate: { x: (direction == 2 ? -this.screenWidth : this.screenWidth), y: 0 },
-            duration: 500
+            duration: duree
         };
         definitions.push(defn1);
 
         var defn2: AnimationDefinition = {
             target: nextSlide,
             translate: { x: 0, y: 0 },
-            duration: 500
+            duration: duree
         };
         definitions.push(defn2);
 
@@ -203,20 +259,24 @@ export class QuestionComponent implements OnInit {
     }
     //------Radio Button--------/
     changeCheckedRadio(idQ, txtR) {
-        console.log(idQ+"  "+txtR) 
-        
+        console.log(idQ + "  " + txtR)
+
         for (let i = 0; i < this.radioOptions.length; i++)
             if (this.radioOptions[i].idQue == idQ && this.radioOptions[i].txtRep == txtR)
                 this.radioOptions[i].selected = true;
-            else if(this.radioOptions[i].idQue == idQ && this.radioOptions[i].txtRep != txtR)
+            else if (this.radioOptions[i].idQue == idQ && this.radioOptions[i].txtRep != txtR)
                 this.radioOptions[i].selected = false;
 
-                console.log(this.radioOptions)
+        console.log(this.radioOptions)
     }
-    elatRadio(idQ, txtR):boolean {
+    elatRadio(idQ, txtR): boolean {
         for (let i = 0; i < this.radioOptions.length; i++)
             if (this.radioOptions[i].idQue == idQ && this.radioOptions[i].txtRep == txtR)
-            return  this.radioOptions[i].selected || false;
+                return this.radioOptions[i].selected || false;
         return false;
+    }
+
+    onCheckBoxTap() {
+        console.log("aaaaaa")
     }
 }

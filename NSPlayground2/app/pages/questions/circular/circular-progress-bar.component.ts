@@ -3,7 +3,7 @@ import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 @Component({
     selector: "circularProgressBar",
     template: `
-    <GridLayout [height]="height" [width]="height">
+    <GridLayout verticalAlignment="bottom" margin="0 6 4 0" [height]="height" [width]="height">
         <RadRadialGauge>
             <RadialScale tkRadialGaugeScales startAngle="-90" sweepAngle="360">
                 <ScaleStyle tkRadialScaleStyle ticksVisible="false" labelsVisible="false" lineThickness="0">

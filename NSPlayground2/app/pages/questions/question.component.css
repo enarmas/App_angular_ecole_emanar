@@ -1,7 +1,7 @@
 /*-----------------------**/
 #gridMain{
     border-width: 2;
-    border-color: blue;
+    border-color: #0C2633;
     height:96%;
   }
   .labelQ{
@@ -11,11 +11,11 @@
   }
   .checkR{
     font-size: 18px;
-    margin: 5 5;
+    margin: 5 0 5 0;
   }
 
   .caro-item-dot {
-    background-color: blue;
+    background-color: #0C2633;
     border-radius: 7;
     height: 14;
     width: 14;
@@ -48,10 +48,13 @@
    height: 150;
    width: 150;
    border-radius: 50%;
-   background-color: blue;
+   background-color: #0C2633;
    color: antiquewhite;
+   font-size: 30;
 }
 
-.classCocher{
-  background-color: violet;
+.labelLoad{
+  color: #0C2633;
+  font-size:20;
+  margin: 2;
 }
