@@ -57,6 +57,7 @@ export class CodeComponent implements OnInit {
     }
 
     ngOnInit() {
+        
         this.page.actionBarHidden = true;
         this.page.cssClasses.add("login-page-background");
         this.page.backgroundSpanUnderStatusBar = true;
@@ -161,11 +162,11 @@ export class CodeComponent implements OnInit {
             
                         Config.ip = connectionString[0].ip;
                         Config.api = connectionString[0].api;
-                        Config.nameSchool = connectionString[0].nameSchool ;
-                        Config.photosUrl = connectionString[0].photosUrl ;
-                        Config.nameDB = connectionString[0].nameDB;
-                        Config.userDB = connectionString[0].userDB;
-                        Config.passDB = connectionString[0].passDB;
+                        Config.nom = connectionString[0].nom ;
+                        Config.photos = connectionString[0].photos ;
+                        Config.database = connectionString[0].database;
+                        Config.user = connectionString[0].user;
+                        Config.password = connectionString[0].password;
 
                         this.isAuthenticating = false; 
                         this.routerExtensions.navigate(["/login"]);

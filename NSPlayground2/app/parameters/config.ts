@@ -1,11 +1,11 @@
 export class Config {
     static ip ;
     static api ;
-    static nameSchool ;
-    static photosUrl ;
-    static nameDB ;
-    static userDB ;
-    static passDB ;
+    static nom ;
+    static photos ;
+    static database ;
+    static user ;
+    static password ;
     static dictionaryUrl = "../../parameters/dictionary/dictionary.json";
 
   }

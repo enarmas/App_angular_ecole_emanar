@@ -15,9 +15,11 @@ import * as builder from "ui/builder";
 import { QuestionSlidesService } from "./question-slides.service";
 import { ActivatedRoute } from "@angular/router";
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout/stack-layout";
-import {Question} from "../../services/question";
+import { Question } from "../../services/question";
 import { Config } from "../../parameters/config";
 
+
+import { RadioOption } from "../../services/radio-option";
 declare var android: any;
 
 @Component({
@@ -28,14 +30,14 @@ declare var android: any;
 })
 export class QuestionComponent implements OnInit {
     //--------------//
-    listeQuestion:Question[] ;
+    listeQuestion: Question[];
     pathImage = Config;
+    timeQCM = 30;
+    radioOptions = [];
     //---------------//
-    // private slidesPath = 'pages/question/slides';
-    // private slideFiles = ['slide1.xml', 'slide2.xml', 'slide3.xml'];
     public id_test;
-    private currentSlideNum: number = 0;
-    private slideCount = 3;
+    public currentSlideNum: number = 0;
+    private slideCount:number;
 
     private screenWidth;
     private slidesView: GridLayout;
@@ -69,24 +71,40 @@ export class QuestionComponent implements OnInit {
 
     ngOnInit() {
         this.id_test = this.activatedRoute.snapshot.paramMap.get('id_test');
+
         this.questionService.getListQuestions(this.id_test).subscribe(
             data => {
                 this.listeQuestion = data;
                 this.slideCount = this.listeQuestion.length;
-                console.log("zaher mizyan question");
-                console.log(this.listeQuestion);
-                
+
+                //---------RadioButton-----------//
+                this.listeQuestion.forEach(item => {
+                    if (this.getTypeQuestion(item).type == 'r') {
+                        this.radioOptions
+                            .push(new RadioOption(item.id, item.rep1, false));
+                        this.radioOptions
+                            .push(new RadioOption(item.id, item.rep2, false));
+                        this.radioOptions
+                            .push(new RadioOption(item.id, item.rep3, false));
+                        this.radioOptions
+                            .push(new RadioOption(item.id, item.rep4, false));
+                        this.radioOptions
+                            .push(new RadioOption(item.id, item.rep5, false));
+                        this.radioOptions
+                            .push(new RadioOption(item.id, item.rep6, false));
+                    }
+                });
+
+                //------------------//
                 this.slideView = this.slideElement.nativeElement;
                 let gridViewC: GridLayout = this.gridViewC.nativeElement as GridLayout;
                 this.slideView.content = (this.slidesView = gridViewC);
                 setTimeout(() => {
-                    for (let i = 1; i < this.slideCount; i++)
+                    for (let i = 1; i < this.slideCount; i++) {
                         this.slidesView.getChildAt(i).opacity = 0;
+                    }
                 }, 50);
-
-                console.log("http://"+this.pathImage.ip+this.pathImage.photosUrl+ this.listeQuestion[1].image);
-							
-
+               
             },
             error => {
                 console.log("error question");
@@ -96,22 +114,23 @@ export class QuestionComponent implements OnInit {
         this.page.actionBarHidden = true;
         this.page.cssClasses.add("welcome-page-background");
         this.page.backgroundSpanUnderStatusBar = true;
+        //------------time circulation --------//
+        var a = setInterval(() => {
+            this.timeQCM -= 1;
+            if (this.timeQCM == 0)
+                clearInterval(a);
+        }, 1000);
 
     }
 
-    skipIntro() {
-        // this.nav.navigate(["/home"], { clearHistory: true });
-        // this.nav.navigate(["/home"]);
-    }
-
-    onSwipe(args: SwipeGestureEventData) {
+    onSwipe(direction: number) {
 
         let prevSlideNum = this.currentSlideNum;
         let count = this.slideCount;
 
-        if (args.direction == 2) {
+        if (direction == 2) {
             this.currentSlideNum = (this.currentSlideNum + 1) % count;
-        } else if (args.direction == 1) {
+        } else if (direction == 1) {
             this.currentSlideNum = (this.currentSlideNum - 1 + count) % count;
         } else {
             // We are interested in left and right directions
@@ -121,17 +140,13 @@ export class QuestionComponent implements OnInit {
         const currSlide = this.slidesView.getChildAt(prevSlideNum);
         const nextSlide = this.slidesView.getChildAt(this.currentSlideNum);
 
-
-        this.animate(currSlide, nextSlide, args.direction);
+        console.log(this.currentSlideNum);
+        this.animate(currSlide, nextSlide, direction);
     }
 
     animate(currSlide, nextSlide, direction) {
-
         nextSlide.translateX = (direction == 2 ? this.screenWidth : -this.screenWidth);
-
         nextSlide.opacity = 1;
-        console.log(nextSlide)
-        console.log(nextSlide.opacity)
         var definitions = new Array<AnimationDefinition>();
         var defn1: AnimationDefinition = {
             target: currSlide,
@@ -157,37 +172,51 @@ export class QuestionComponent implements OnInit {
             });
     }
 
-    itemSelected(item: number) {
-
-        console.log(item)
-    }
 
     getSliderItemClass(item: number) {
-        /*if (item == this.currentSlideNum)
-            return "caro-item-dot caro-item-dot-selected";
+        if (item == this.currentSlideNum)
+            return "caro-item-dot-selected";
 
-        return "caro-item-dot";*/
+        return "caro-item-dot";
     }
 
-    getTypeQuestion(quest){
-         let nbR = 0;
-         let nbJ = 0;
+    getTypeQuestion(quest) {
+        let nbR = 0;
+        let nbJ = 0;
 
-        if(quest.rep1!=null) nbR +=1
-        if(quest.rep2!=null) nbR +=1
-        if(quest.rep3!=null) nbR +=1
-        if(quest.rep4!=null) nbR +=1
-        if(quest.rep5!=null) nbR +=1
-        if(quest.rep6!=null) nbR +=1
+        if (quest.rep1 != null) nbR += 1
+        if (quest.rep2 != null) nbR += 1
+        if (quest.rep3 != null) nbR += 1
+        if (quest.rep4 != null) nbR += 1
+        if (quest.rep5 != null) nbR += 1
+        if (quest.rep6 != null) nbR += 1
 
-        if(quest.just1!="0") nbJ +=1
-        if(quest.just2!="0") nbJ +=1
-        if(quest.just3!="0") nbJ +=1
-        if(quest.just4!="0") nbJ +=1
-        if(quest.just5!="0") nbJ +=1
-        if(quest.just6!="0") nbJ +=1
-        if (nbR==1 && nbJ==1) return {type:"t",nPro:nbR}
-        else if (nbR>1 && nbJ==1) return {type:"r",nPro:nbR}
-        return {type:"c",nPro:nbR}
+        if (quest.just1 != "0") nbJ += 1
+        if (quest.just2 != "0") nbJ += 1
+        if (quest.just3 != "0") nbJ += 1
+        if (quest.just4 != "0") nbJ += 1
+        if (quest.just5 != "0") nbJ += 1
+        if (quest.just6 != "0") nbJ += 1
+        if (nbR == 1 && nbJ == 1) return { type: "t", nPro: nbR }
+        else if (nbR > 1 && nbJ == 1) return { type: "r", nPro: nbR }
+        return { type: "c", nPro: nbR }
+    }
+    //------Radio Button--------/
+    changeCheckedRadio(idQ, txtR) {
+        console.log(idQ+"  "+txtR) 
+        
+        for (let i = 0; i < this.radioOptions.length; i++)
+            if (this.radioOptions[i].idQue == idQ && this.radioOptions[i].txtRep == txtR)
+                this.radioOptions[i].selected = true;
+            else if(this.radioOptions[i].idQue == idQ && this.radioOptions[i].txtRep != txtR)
+                this.radioOptions[i].selected = false;
+
+                console.log(this.radioOptions)
+    }
+    elatRadio(idQ, txtR):boolean {
+        for (let i = 0; i < this.radioOptions.length; i++)
+            if (this.radioOptions[i].idQue == idQ && this.radioOptions[i].txtRep == txtR)
+            return  this.radioOptions[i].selected || false;
+        return false;
     }
 }

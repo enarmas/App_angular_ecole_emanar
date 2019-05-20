@@ -27,6 +27,16 @@ import { TNSCheckBoxModule } from 'nativescript-checkbox/angular';
 import {QuestionComponent} from './pages/questions/question.component'
 import { QuestionRoutingModule } from "./pages/questions/question-routing.module"
 import { QuestionSlidesService } from "./pages/questions/question-slides.service";
+//time circuler
+import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
+import { NativeScriptUICalendarModule } from "nativescript-ui-calendar/angular";
+import { NativeScriptUIChartModule } from "nativescript-ui-chart/angular";
+import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
+import { NativeScriptUIAutoCompleteTextViewModule } from "nativescript-ui-autocomplete/angular";
+import { NativeScriptUIGaugeModule } from "nativescript-ui-gauge/angular";
+import { CircularProgressBarComponent } from "./pages/questions/circular/circular-progress-bar.component";
 
 @NgModule({
     bootstrap: [
@@ -39,7 +49,15 @@ import { QuestionSlidesService } from "./pages/questions/question-slides.service
         HttpClientModule,
         NgShadowModule,
         QuestionRoutingModule,
-        TNSCheckBoxModule
+        TNSCheckBoxModule,
+        NativeScriptUISideDrawerModule,
+        NativeScriptUIListViewModule,
+        NativeScriptUICalendarModule,
+        NativeScriptUIChartModule,
+        NativeScriptUIDataFormModule,
+        NativeScriptUIAutoCompleteTextViewModule,
+        NativeScriptUIGaugeModule,
+        NativeScriptCommonModule
     ],
     declarations: [
         AppComponent,
@@ -48,7 +66,8 @@ import { QuestionSlidesService } from "./pages/questions/question-slides.service
         CodeComponent,
         ItemTestComponent,
         PrepareTestComponent,
-        QuestionComponent
+        QuestionComponent,
+        CircularProgressBarComponent
     ],
     providers: [
         BackendService,
