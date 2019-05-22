@@ -13,7 +13,7 @@ export class QuestionSlidesService {
     }
 
     getListQuestions(idTest :number):Observable<any>{
-        let question_idJson = '[{ "test_id": "'+idTest+'" }]';
+        let question_idJson = '[{ "test_id": "'+idTest+'" ,"dbHost":"localhost","dbName":"'+Config.database+'","dbUser":"'+Config.user+'","dbPass":"'+Config.password+'"}]';
         return this.http.post("http://"+Config.ip+Config.api+"index.php/quetions",question_idJson) ; 
     }
 }

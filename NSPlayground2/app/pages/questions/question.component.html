@@ -1,7 +1,7 @@
 <StackLayout height="100%" backgroundColor="#f3f3f3" *ngIf="!showSlideQuestion" columns="" verticalAlignment="center"
 	horizontalAlignment="center">
 	<Label class="labelLoad" verticalAlignment="center" horizontalAlignment="center"
-		[text]="dictionayjson[0].loading"></Label>
+		[text]="dictionayjson[isFrAr].loading"></Label>
 	<Progress width="90%" (loaded)="onProgressBarLoaded($event)" (valueChange)="onValueChanged($event)" color="#0C2633"
 		backgroundColor="#FFFF66" class="m-20">
 	</Progress>
