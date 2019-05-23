@@ -23,6 +23,7 @@ import { RadioOption } from "../../services/radio-option";
 
 import { Progress } from "tns-core-modules/ui/progress";
 import { getString } from "tns-core-modules/application-settings/application-settings";
+import { AffectControle } from "~/services/affectControle";
 
 declare var android: any;
 
@@ -35,6 +36,7 @@ declare var android: any;
 export class QuestionComponent implements OnInit {
     //--------------//
     listeQuestion: Question[];
+    listeRepond:Question[];
     pathImage = Config;
     timeQCM;
     timeSecond;
@@ -48,6 +50,7 @@ export class QuestionComponent implements OnInit {
 
     private screenWidth;
     private slidesView: GridLayout;
+    private creeenheight;
 
     @ViewChild('slideContent') slideElement: ElementRef;
     @ViewChild('gridViewC') gridViewC: ElementRef;
@@ -67,7 +70,7 @@ export class QuestionComponent implements OnInit {
             var View = android.view.View;
             var window = app.android.startActivity.getWindow();
             window.setStatusBarColor(0x000000);
-
+           
             var decorView = window.getDecorView();
             decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -78,17 +81,19 @@ export class QuestionComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.creeenheight = screen.mainScreen.heightDIPs;
         this.dictionayjson = require(Config.dictionaryUrl);
         this.id_test = this.activatedRoute.snapshot.paramMap.get('id_test');
         this.timeQCM = getString("test_duree_pre");
-        this.timeSecond=60;
+        this.timeSecond = 60;
         let gridMain: GridLayout = this.gridMain.nativeElement as GridLayout;
         gridMain.height = 0
+
         this.questionService.getListQuestions(this.id_test).subscribe(
             data => {
                 this.listeQuestion = data;
                 this.slideCount = this.listeQuestion.length;
-
+                this.listeRepond = this.listeQuestion;
                 //---------RadioButton-----------//
                 this.listeQuestion.forEach(item => {
                     if (this.getTypeQuestion(item).type == 'r') {
@@ -108,24 +113,19 @@ export class QuestionComponent implements OnInit {
                 });
 
                 //------------------//
+                console.log(this.listeRepond)
                 this.slideView = this.slideElement.nativeElement;
                 let gridViewC: GridLayout = this.gridViewC.nativeElement as GridLayout;
                 this.slideView.content = (this.slidesView = gridViewC);
+                //Opacity and swipe all
                 setTimeout(() => {
                     for (let i = 1; i < this.slideCount; i++) {
                         this.slidesView.getChildAt(i).opacity = 0;
                     }
-
                     this.listeQuestion.forEach(item => {
-                        let ii = 0;
                         this.onSwipe(2, 10)
-                        console.log(ii++)
-
                     }, 50);
-
-                    console.log(this.currentSlideNum)
                 })
-
             },
             error => {
                 console.log("error question");
@@ -159,15 +159,31 @@ export class QuestionComponent implements OnInit {
         if (args.value == 200) {
             this.showSlideQuestion = true;
             let gridMain: GridLayout = this.gridMain.nativeElement as GridLayout;
-            gridMain.height = 10000;
+            gridMain.height = this.creeenheight;
+            //----- add date stare ------//
+            let d = new Date();
+            let affControle:AffectControle;
+            affControle.idTest =   this.id_test;
+            affControle.datepassation =  d.toLocaleDateString();
+            affControle.seance_id = null;
+            affControle.inscription_id = null;
+            affControle.heuredebutpassation = null;
+            affControle.heurefinpassation = null;
+            affControle.termine = null;
+            affControle.minRestant = null;
+            affControle.secRestant = null;
+            affControle.score = null;
+            this.questionService.setAffectationControle(affControle).subscribe((msg)=>{
+                console.log(msg)
+            })
             //------------time circulation --------//
             var timeM = setInterval(() => {
                 this.timeQCM -= 1;
-                this.timeSecond =60;
-                if (this.timeQCM == 0){
+                this.timeSecond = 60;
+                if (this.timeQCM == 0) {
                     clearInterval(timeM);
                 }
-                   
+
             }, 60000);
 
             var timeS = setInterval(() => {
