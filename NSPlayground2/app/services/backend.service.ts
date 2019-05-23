@@ -28,8 +28,11 @@ export class BackendService {
     }
 
     public login2(user:User) :  Observable<any>{
-           
-            let userJson = '[{"email": "'+user.email+'","password": "'+user.password+'"}]';
+           /*$dbhost = "localhost";
+            $dbuser = "root";
+            $dbpass = "";
+            $dbname = "manar2";*/
+            let userJson = '[{"email": "'+user.email+'","password": "'+user.password+'","dbHost":"localhost","dbName":"'+Config.database+'","dbUser":"'+Config.user+'","dbPass":"'+Config.password+'"}]';
     
             return this.http.post("http://"+Config.ip+Config.api+"index.php/login",userJson) ;
         
@@ -37,7 +40,7 @@ export class BackendService {
 
     public ListTest(inscription_id:string) :  Observable<any>{
            
-        let inscription_idJson = '[{"inscription_id": '+inscription_id+' }]';
+        let inscription_idJson = '[{"inscription_id": '+inscription_id+',"dbHost":"localhost","dbName":"'+Config.database+'","dbUser":"'+Config.user+'","dbPass":"'+Config.password+'" }]';
 
         return this.http.post("http://"+Config.ip+Config.api+"index.php/tests",inscription_idJson) ;
     

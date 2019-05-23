@@ -23,7 +23,7 @@ export class PrepareTestComponent implements OnInit {
 
     test:Test = new Test();
     dictionayjson;
-    isArFr = 0;
+    isArFr = Config.IsArFr;
     myDate = new Date();
 
     @ViewChild("textAr") textAr: ElementRef;

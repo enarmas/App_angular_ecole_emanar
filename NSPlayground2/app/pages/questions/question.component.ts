@@ -42,7 +42,9 @@ export class QuestionComponent implements OnInit {
     timeSecond;
     radioOptions = [];
     showSlideQuestion = false;
+    isFrAr = Config.IsArFr;
     dictionayjson;
+
     //---------------//
     public id_test;
     public currentSlideNum: number = 0;

@@ -23,6 +23,7 @@ export class AppComponent {
         if(getString("connectionString")){
 
             this.connectionString = JSON.parse(getString("connectionString"));
+            let IsArFr = getString("IsArFr");
             console.log(this.connectionString[0]);
 
             Config.ip = this.connectionString[0].ip;
@@ -32,6 +33,7 @@ export class AppComponent {
             Config.database = this.connectionString[0].database;
             Config.user = this.connectionString[0].user;
             Config.password = this.connectionString[0].password;
+            Config.IsArFr = IsArFr ;
 
             this.routerExtensions.navigate(["/login"]);
         

@@ -6,6 +6,7 @@ export class Config {
     static database ;
     static user ;
     static password ;
+    static IsArFr ;
     static dictionaryUrl = "../../parameters/dictionary/dictionary.json";
 
   }

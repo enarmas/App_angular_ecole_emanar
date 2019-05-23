@@ -14,6 +14,7 @@ import { User } from "../../services/user.model";
 import { Config } from "../../parameters/config";
 import {getBoolean,setBoolean,getNumber,setNumber, getString, setString, hasKey, remove, clear} from "tns-core-modules/application-settings";
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import { parse } from "tns-core-modules/css/reworkcss";
 
 declare var android: any;
 
@@ -31,6 +32,8 @@ export class CodeComponent implements OnInit {
     user: User;
 
     codeSchool='';
+    IsArFr=0;
+    
     dialogOpen = true;
 
     isAuthenticating = false;
@@ -57,6 +60,8 @@ export class CodeComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        setString('IsArFr',this.IsArFr.toString());
         
         this.page.actionBarHidden = true;
         this.page.cssClasses.add("login-page-background");
@@ -83,6 +88,10 @@ export class CodeComponent implements OnInit {
 
     closeDialog(option){
         this.dialogOpen = false;
+
+        this.IsArFr = option;
+        setString('IsArFr',this.IsArFr.toString());
+
         console.log("samrane : "+ option);
     }
 
@@ -159,6 +168,7 @@ export class CodeComponent implements OnInit {
                         setString('connectionString',JSON.stringify(data.ecole));
                         //console.log( getString('connectionString'));
                         let connectionString = JSON.parse(getString("connectionString"));
+                        let IsArFr = getString("IsArFr");
             
                         Config.ip = connectionString[0].ip;
                         Config.api = connectionString[0].api;
@@ -167,6 +177,7 @@ export class CodeComponent implements OnInit {
                         Config.database = connectionString[0].database;
                         Config.user = connectionString[0].user;
                         Config.password = connectionString[0].password;
+                        Config.IsArFr = IsArFr ;
 
                         this.isAuthenticating = false; 
                         this.routerExtensions.navigate(["/login"]);

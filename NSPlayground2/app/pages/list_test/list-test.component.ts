@@ -26,7 +26,7 @@ export class ListTestComponent implements OnInit {
     categories = [1,2,3,6,5,8];
     tests:Test[];
     dictionayjson;
-    isFrAr = 0;
+    isFrAr = Config.IsArFr;
 
    /* fabShadow: AndroidData = {
         elevation: 6,
